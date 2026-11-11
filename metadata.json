@@ -1,0 +1,6 @@
+{
+  "name": "Avalon Airlines",
+  "description": "Riyadh's premier hybrid airline offering domestic and regional flights, flexible fare tiers, B2B cargo logistics, and authentic Saudi hospitality.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
