@@ -1,21 +1,2188 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Avalon Airlines | Beyond Every Horizon</title>
-    <meta name="description" content="Riyadh's premier hybrid airline connecting King Khalid International Airport (RUH) to key global hubs with low-cost efficiency and full-service Saudi hospitality." />
-    <meta property="og:title" content="Avalon Airlines | Beyond Every Horizon" />
-    <meta property="og:description" content="Riyadh's premier hybrid airline connecting King Khalid International Airport (RUH) to key global hubs with low-cost efficiency and full-service Saudi hospitality." />
+    <title>Avalon — Beyond Every Horizon | Diaspora-First Value Airline from Riyadh</title>
+    <meta
+      name="description"
+      content="Avalon is a specialist, diaspora-first value airline headquartered in Riyadh (RUH). Launching Year 1 with 3 Airbus A320 aircraft connecting Riyadh with Jeddah, Dammam, Dhaka, and Kochi."
+    />
+    <meta property="og:title" content="Avalon — Beyond Every Horizon" />
+    <meta
+      property="og:description"
+      content="Low fares, 30kg family baggage options, and dependable point-to-point flights from Riyadh (RUH) on a 3-aircraft Airbus A320 launch fleet."
+    />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              aerospace: {
+                950: '#070D1E',
+                900: '#0B132B',
+                800: '#1C2541',
+                700: '#273459',
+              },
+            },
+            fontFamily: {
+              display: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+              sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
+              mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+            },
+          },
+        },
+      };
+    </script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+      body {
+        background-color: #F8FAFC;
+        color: #0B132B;
+        font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+        overflow-x: hidden;
+      }
+
+      h1, h2, h3, h4, .font-display {
+        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      }
+
+      .tabular-nums {
+        font-variant-numeric: tabular-nums;
+      }
+
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0B132B;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #334155;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #38BDF8;
+      }
+
+      @keyframes flightPathDash {
+        to {
+          stroke-dashoffset: -24;
+        }
+      }
+      .animate-route-arc {
+        stroke-dasharray: 6 6;
+        animation: flightPathDash 1.8s linear infinite;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .animate-route-arc {
+          animation: none;
+        }
+      }
+
+      @media print {
+        header, footer, nav, .no-print {
+          display: none !important;
+        }
+        body {
+          background: #ffffff !important;
+          color: #0B132B !important;
+        }
+        #boarding-pass-card {
+          border: 1px solid #cbd5e1 !important;
+          box-shadow: none !important;
+        }
+      }
+    </style>
   </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+  <body class="antialiased selection:bg-sky-400 selection:text-slate-950">
+
+    <!-- Toast Notification -->
+    <div
+      id="toast-container"
+      role="status"
+      aria-live="polite"
+      class="fixed bottom-5 right-5 z-50 hidden items-center gap-3 rounded-xl border border-sky-400/50 bg-[#0B132B] px-4 py-3 text-sm font-medium text-white shadow-2xl"
+    >
+      <i data-lucide="check-circle-2" class="h-4 w-4 text-sky-400 shrink-0"></i>
+      <span id="toast-message"></span>
+    </div>
+
+    <!-- TOP BAR CONTRACT: 3 clean zones separated by gap-8 -->
+    <header class="fixed top-0 left-0 right-0 z-40 border-b border-white/10 bg-[#0B132B]/95 backdrop-blur-md">
+      <div class="mx-auto flex max-w-7xl items-center justify-between gap-8 px-4 py-3.5 sm:px-6 lg:px-8">
+        <!-- Zone 1: Brand Wordmark + Wing Mark -->
+        <a
+          href="#hero"
+          class="flex items-center gap-2.5 font-display text-xl font-extrabold tracking-tight text-white whitespace-nowrap shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
+        >
+          <svg viewBox="0 0 28 28" class="h-7 w-7 shrink-0" aria-hidden="true">
+            <rect width="28" height="28" rx="7" fill="#1C2541" />
+            <path d="M6 19L15 7h5l-6 12H6z" fill="#38BDF8" />
+            <path d="M13 19l5-8h3.5L17 19H13z" fill="#F59E0B" />
+          </svg>
+          <span>Avalon</span>
+        </a>
+
+        <!-- Zone 2: 5 concise single-line nav links -->
+        <nav aria-label="Primary Navigation" class="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-200">
+          <a href="#booking-panel" class="whitespace-nowrap shrink-0 transition-colors hover:text-sky-400">Book</a>
+          <a href="#destinations" class="whitespace-nowrap shrink-0 transition-colors hover:text-sky-400">Destinations</a>
+          <a href="#stopover" class="whitespace-nowrap shrink-0 transition-colors hover:text-sky-400">96h Stopover</a>
+          <a href="#travel-info" class="whitespace-nowrap shrink-0 transition-colors hover:text-sky-400">Travel Info</a>
+          <a href="#cargo" class="whitespace-nowrap shrink-0 transition-colors hover:text-sky-400">Cargo</a>
+        </nav>
+
+        <!-- Zone 3: Single Primary Action + Mobile Menu Trigger -->
+        <div class="flex items-center gap-3 shrink-0">
+          <button
+            type="button"
+            onclick="openManageTab('checkin')"
+            class="hidden sm:inline-flex items-center justify-center rounded-lg bg-amber-400 px-4 py-2 text-xs font-bold text-slate-950 transition-colors hover:bg-amber-300 whitespace-nowrap shrink-0"
+          >
+            Online Check-In
+          </button>
+          <button
+            id="mobile-menu-btn"
+            type="button"
+            aria-label="Toggle navigation menu"
+            aria-expanded="false"
+            onclick="toggleMobileMenu()"
+            class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 text-slate-200 hover:bg-[#1C2541] lg:hidden"
+          >
+            <i data-lucide="menu" class="h-5 w-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Drawer -->
+      <div id="mobile-menu" class="hidden border-t border-white/10 bg-[#0B132B] px-4 py-5 lg:hidden">
+        <div class="flex flex-col space-y-3 text-sm font-medium text-slate-200">
+          <a href="#booking-panel" onclick="closeMobileMenu()" class="py-2 hover:text-sky-400">Book a Flight</a>
+          <a href="#destinations" onclick="closeMobileMenu()" class="py-2 hover:text-sky-400">Destinations &amp; Launch Fares</a>
+          <a href="#stopover" onclick="closeMobileMenu()" class="py-2 hover:text-sky-400">96h Saudi Stopover</a>
+          <a href="#travel-info" onclick="closeMobileMenu()" class="py-2 hover:text-sky-400">Baggage &amp; Fleet</a>
+          <a href="#cargo" onclick="closeMobileMenu()" class="py-2 hover:text-sky-400">Avalon Cargo</a>
+          <button
+            type="button"
+            onclick="closeMobileMenu(); openManageTab('checkin');"
+            class="mt-2 w-full rounded-lg bg-amber-400 px-4 py-3 text-center text-xs font-bold text-slate-950"
+          >
+            Online Check-In
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- =================================================================== -->
+      <!-- 1. HERO BANNER + ANCHORED COMPETITOR-STYLE BOOKING ENGINE           -->
+      <!-- =================================================================== -->
+      <section id="hero" class="relative bg-gradient-to-b from-[#070D1E] via-[#0B132B] to-[#1C2541] pt-24 pb-16 lg:pt-28 lg:pb-20 text-white">
+        <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(#38BDF8_1px,transparent_1px)] [background-size:34px_34px] opacity-[0.07]"></div>
+        <div class="pointer-events-none absolute top-0 right-0 h-[440px] w-[440px] rounded-full bg-sky-500/15 blur-3xl"></div>
+
+        <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <!-- Hero Headline Row -->
+          <div class="grid grid-cols-1 items-center gap-6 lg:grid-cols-12 pb-8">
+            <div class="lg:col-span-8">
+              <p class="text-xs font-semibold tracking-wider text-sky-400 uppercase mb-2">
+                Headquartered in Riyadh (RUH) &middot; Year 1 Fleet: 3&times; Airbus A320 (180 Seats)
+              </p>
+              <h1
+                class="font-display font-extrabold tracking-tight text-white"
+                style="font-size: clamp(2rem, 3.8vw, 3.35rem); line-height: 1.08; text-wrap: balance;"
+              >
+                Avalon &mdash; <span class="text-sky-400">Beyond Every</span> <span class="text-amber-400">Horizon</span>
+              </h1>
+              <p class="mt-3 max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base">
+                Specialist, diaspora-first value airline connecting Riyadh with Jeddah, Dammam, Dhaka, and Kochi through transparent low fares, 30kg family baggage options, and multilingual care.
+              </p>
+            </div>
+
+            <!-- Subtle Livery & Year 1 Quick Deal Spotlight -->
+            <div class="hidden lg:flex lg:col-span-4 items-center justify-end">
+              <div class="w-full rounded-2xl border border-white/10 bg-[#0B132B]/70 p-4">
+                <svg viewBox="0 0 360 110" class="w-full h-auto" role="img" aria-label="Avalon Airbus A320 aircraft">
+                  <defs>
+                    <linearGradient id="heroJetGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#FFFFFF" />
+                      <stop offset="80%" stop-color="#E2E8F0" />
+                      <stop offset="100%" stop-color="#94A3B8" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M 15 92 Q 180 12 345 70" fill="none" stroke="#38BDF8" stroke-opacity="0.4" stroke-width="1.5" class="animate-route-arc" />
+                  <g transform="translate(55, 22)">
+                    <path d="M 18 42 L 4 8 L 28 8 L 46 42 Z" fill="#0B132B" stroke="#38BDF8" stroke-width="1.5" />
+                    <path d="M 12 24 L 28 8 L 35 8 L 19 30 Z" fill="#F59E0B" />
+                    <path d="M 22 42 L 210 42 C 234 42 246 50 248 55 C 246 60 230 64 205 64 L 22 62 Z" fill="url(#heroJetGrad)" />
+                    <path d="M 224 46 L 238 51 L 225 53 Z" fill="#0B132B" />
+                    <g fill="#1C2541">
+                      <rect x="65" y="48" width="4" height="5" rx="1.5" /><rect x="75" y="48" width="4" height="5" rx="1.5" />
+                      <rect x="85" y="48" width="4" height="5" rx="1.5" /><rect x="95" y="48" width="4" height="5" rx="1.5" />
+                      <rect x="105" y="48" width="4" height="5" rx="1.5" /><rect x="115" y="48" width="4" height="5" rx="1.5" />
+                      <rect x="125" y="48" width="4" height="5" rx="1.5" /><rect x="135" y="48" width="4" height="5" rx="1.5" />
+                      <rect x="145" y="48" width="4" height="5" rx="1.5" /><rect x="155" y="48" width="4" height="5" rx="1.5" />
+                      <rect x="165" y="48" width="4" height="5" rx="1.5" /><rect x="175" y="48" width="4" height="5" rx="1.5" />
+                    </g>
+                    <path d="M 30 58 L 225 58 C 218 63 205 64 195 64 L 30 62 Z" fill="#0B132B" />
+                    <path d="M 110 58 L 76 74 L 138 58 Z" fill="#94A3B8" />
+                    <rect x="118" y="61" width="24" height="10" rx="4" fill="#38BDF8" />
+                    <rect x="122" y="62" width="18" height="8" rx="3" fill="#1C2541" />
+                    <text x="58" y="38" fill="#38BDF8" font-size="9" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" letter-spacing="2">AVALON</text>
+                  </g>
+                </svg>
+                <div class="mt-2 flex items-center justify-between text-[11px] text-slate-300 border-t border-white/10 pt-2">
+                  <span>Year 1 Launch Corridors</span>
+                  <span class="font-mono font-bold text-amber-400">JED &middot; DMM &middot; DAC &middot; COK</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- =============================================================== -->
+          <!-- CRISP WHITE COMPETITOR-STYLE BOOKING ENGINE (ABOVE THE FOLD)    -->
+          <!-- =============================================================== -->
+          <div id="booking-panel" class="scroll-mt-24 rounded-2xl border border-slate-200 bg-white text-slate-900 shadow-2xl overflow-hidden">
+            <!-- Top Mode Tabs (Competitor Airline Style) -->
+            <div class="flex flex-col gap-3 border-b border-slate-200 bg-slate-50 px-5 py-3.5 sm:px-7 lg:flex-row lg:items-center lg:justify-between">
+              <div class="flex flex-wrap gap-2" role="tablist" aria-label="Travel tools">
+                <button id="main-tab-book" type="button" onclick="switchMainWidgetTab('book')" class="inline-flex items-center gap-2 rounded-lg bg-[#0B132B] px-4 py-2 text-xs font-bold text-white transition-colors whitespace-nowrap shrink-0">
+                  <i data-lucide="plane-takeoff" class="h-3.5 w-3.5 text-sky-400"></i>
+                  <span>Book a Flight</span>
+                </button>
+                <button id="main-tab-manage" type="button" onclick="switchMainWidgetTab('manage')" class="inline-flex items-center gap-2 rounded-lg bg-white border border-slate-200 px-4 py-2 text-xs font-semibold text-slate-700 hover:border-slate-300 hover:text-[#0B132B] transition-colors whitespace-nowrap shrink-0">
+                  <i data-lucide="briefcase" class="h-3.5 w-3.5 text-slate-500"></i>
+                  <span>Manage Booking</span>
+                </button>
+                <button id="main-tab-checkin" type="button" onclick="switchMainWidgetTab('checkin')" class="inline-flex items-center gap-2 rounded-lg bg-white border border-slate-200 px-4 py-2 text-xs font-semibold text-slate-700 hover:border-slate-300 hover:text-[#0B132B] transition-colors whitespace-nowrap shrink-0">
+                  <i data-lucide="ticket" class="h-3.5 w-3.5 text-slate-500"></i>
+                  <span>Online Check-In</span>
+                </button>
+                <button id="main-tab-status" type="button" onclick="switchMainWidgetTab('status')" class="inline-flex items-center gap-2 rounded-lg bg-white border border-slate-200 px-4 py-2 text-xs font-semibold text-slate-700 hover:border-slate-300 hover:text-[#0B132B] transition-colors whitespace-nowrap shrink-0">
+                  <i data-lucide="clock" class="h-3.5 w-3.5 text-slate-500"></i>
+                  <span>Flight Status</span>
+                </button>
+              </div>
+
+              <div class="flex items-center justify-between gap-3 lg:justify-end">
+                <label for="currency-select" class="text-xs font-medium text-slate-500">Display Currency</label>
+                <select
+                  id="currency-select"
+                  onchange="changeCurrency(this.value)"
+                  class="rounded-lg border border-slate-300 bg-white px-3 py-1.5 font-mono text-xs font-bold text-[#0B132B] focus:border-sky-500 focus:outline-none cursor-pointer"
+                >
+                  <option value="SAR">SAR (﷼)</option>
+                  <option value="USD">USD ($)</option>
+                  <option value="INR">INR (₹)</option>
+                  <option value="BDT">BDT (৳)</option>
+                  <option value="LKR">LKR (Rs)</option>
+                  <option value="EGP">EGP (E£)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="p-5 sm:p-7">
+              <!-- PANEL A: BOOK A FLIGHT -->
+              <div id="panel-book">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                  <div class="flex flex-wrap items-center gap-2.5">
+                    <div class="inline-flex rounded-xl bg-slate-100 p-1 border border-slate-200">
+                      <button id="trip-round-btn" type="button" onclick="setTripType('roundTrip')" class="rounded-lg bg-white px-3.5 py-1.5 text-xs font-bold text-[#0B132B] shadow-sm whitespace-nowrap">Round Trip</button>
+                      <button id="trip-oneway-btn" type="button" onclick="setTripType('oneWay')" class="rounded-lg px-3.5 py-1.5 text-xs font-medium text-slate-600 hover:text-[#0B132B] whitespace-nowrap">One Way</button>
+                    </div>
+
+                    <div class="inline-flex rounded-xl bg-slate-100 p-1 border border-slate-200">
+                      <button id="mode-direct-btn" type="button" onclick="setBookingMode('direct')" class="rounded-lg bg-[#0B132B] px-3.5 py-1.5 text-xs font-bold text-white whitespace-nowrap">Direct Passenger</button>
+                      <button id="mode-agent-btn" type="button" onclick="setBookingMode('agent')" class="rounded-lg px-3.5 py-1.5 text-xs font-semibold text-slate-600 hover:text-[#0B132B] whitespace-nowrap">Travel Agent / Umrah Groups</button>
+                    </div>
+                  </div>
+
+                  <span id="channel-hint" class="text-xs font-medium text-slate-500">Direct Web &amp; WhatsApp-assisted low fares</span>
+                </div>
+
+                <div id="agent-banner" class="mb-4 hidden rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-xs text-slate-800">
+                  <strong class="text-amber-800">Travel Agent &amp; Licensed Umrah Group Allotment:</strong> Reserve 10–45 seat blocks with 48-hour name-list hold, 30kg family baggage pooling, and 8% group net pricing.
+                </div>
+
+                <!-- Search Fields (Clean Light Competitor Inputs) -->
+                <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-12 items-stretch">
+                  <div class="rounded-xl border border-slate-300 bg-slate-50/70 px-4 py-3 lg:col-span-3 focus-within:border-sky-500 focus-within:bg-white transition-colors">
+                    <label for="origin-select" class="block text-[11px] font-bold uppercase tracking-wider text-slate-500">From</label>
+                    <select
+                      id="origin-select"
+                      onchange="onOriginChange(this.value)"
+                      class="mt-1 w-full bg-transparent text-sm font-bold text-[#0B132B] focus:outline-none cursor-pointer"
+                    ></select>
+                  </div>
+
+                  <div class="flex items-center justify-center lg:col-span-1">
+                    <button
+                      type="button"
+                      onclick="swapAirports()"
+                      title="Swap Origin and Destination"
+                      aria-label="Swap Origin and Destination"
+                      class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 bg-white text-[#0B132B] shadow-sm transition-colors hover:border-sky-500 hover:bg-sky-50"
+                    >
+                      <i data-lucide="arrow-left-right" class="h-4 w-4 text-sky-600"></i>
+                    </button>
+                  </div>
+
+                  <div class="rounded-xl border border-slate-300 bg-slate-50/70 px-4 py-3 lg:col-span-3 focus-within:border-sky-500 focus-within:bg-white transition-colors">
+                    <label for="dest-select" class="block text-[11px] font-bold uppercase tracking-wider text-slate-500">To</label>
+                    <select
+                      id="dest-select"
+                      onchange="onDestinationChange(this.value)"
+                      class="mt-1 w-full bg-transparent text-sm font-bold text-[#0B132B] focus:outline-none cursor-pointer"
+                    ></select>
+                  </div>
+
+                  <div class="rounded-xl border border-slate-300 bg-slate-50/70 px-4 py-3 lg:col-span-2 focus-within:border-sky-500 focus-within:bg-white transition-colors">
+                    <label for="depart-date" class="block text-[11px] font-bold uppercase tracking-wider text-slate-500">Departure</label>
+                    <input
+                      id="depart-date"
+                      type="date"
+                      value="2026-12-10"
+                      onchange="onDateChange()"
+                      class="mt-1 w-full bg-transparent font-mono text-xs font-bold text-[#0B132B] focus:outline-none"
+                    />
+                  </div>
+
+                  <div id="return-date-wrap" class="rounded-xl border border-slate-300 bg-slate-50/70 px-4 py-3 lg:col-span-2 focus-within:border-sky-500 focus-within:bg-white transition-colors">
+                    <label for="return-date" class="block text-[11px] font-bold uppercase tracking-wider text-slate-500">Return</label>
+                    <input
+                      id="return-date"
+                      type="date"
+                      value="2026-12-24"
+                      onchange="onDateChange()"
+                      class="mt-1 w-full bg-transparent font-mono text-xs font-bold text-[#0B132B] focus:outline-none"
+                    />
+                  </div>
+
+                  <div class="rounded-xl border border-slate-300 bg-slate-50/70 px-4 py-3 lg:col-span-1 focus-within:border-sky-500 focus-within:bg-white transition-colors">
+                    <label id="pax-label" for="pax-select" class="block text-[11px] font-bold uppercase tracking-wider text-slate-500">Guests</label>
+                    <select id="pax-select" onchange="onPassengersChange(this.value)" class="mt-1 w-full bg-transparent text-sm font-bold text-[#0B132B] focus:outline-none cursor-pointer"></select>
+                  </div>
+                </div>
+
+                <div class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-600">
+                    <span class="font-medium">No hidden fees</span>
+                    <span class="text-slate-300">&middot;</span>
+                    <span>mada, Sadad, Apple Pay, Visa &amp; Mastercard</span>
+                    <span class="text-slate-300">&middot;</span>
+                    <span>Quick pick:
+                      <button type="button" onclick="quickBook('RUH','JED')" class="font-bold text-sky-700 hover:underline">RUH&rarr;JED</button>,
+                      <button type="button" onclick="quickBook('RUH','DAC')" class="font-bold text-sky-700 hover:underline">RUH&rarr;DAC</button>,
+                      <button type="button" onclick="quickBook('RUH','COK')" class="font-bold text-sky-700 hover:underline">RUH&rarr;COK</button>
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    onclick="startBookingSearch()"
+                    class="inline-flex items-center justify-center gap-2 rounded-xl bg-amber-400 px-7 py-3.5 text-sm font-extrabold text-slate-950 shadow-md shadow-amber-400/20 transition-all hover:bg-amber-300 whitespace-nowrap shrink-0"
+                  >
+                    <i data-lucide="search" class="h-4 w-4"></i>
+                    <span id="search-btn-text">Search Flights</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- PANEL B: MANAGE BOOKING -->
+              <div id="panel-manage" class="hidden">
+                <form onsubmit="retrieveBooking(event, 'manage')" class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                  <div>
+                    <label for="manage-pnr" class="block text-xs font-semibold text-slate-600 mb-1">Booking Reference (PNR)</label>
+                    <input id="manage-pnr" type="text" required value="AV-2026-84R" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 font-mono text-sm font-bold text-[#0B132B] uppercase focus:border-sky-500 focus:bg-white focus:outline-none" />
+                  </div>
+                  <div>
+                    <label for="manage-name" class="block text-xs font-semibold text-slate-600 mb-1">Passenger Last Name</label>
+                    <input id="manage-name" type="text" required value="Al-Rashid" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm font-bold text-[#0B132B] focus:border-sky-500 focus:bg-white focus:outline-none" />
+                  </div>
+                  <div class="flex items-end">
+                    <button type="submit" class="w-full rounded-xl bg-[#0B132B] px-6 py-3.5 text-sm font-bold text-white hover:bg-[#1C2541] transition-colors">
+                      Retrieve Booking
+                    </button>
+                  </div>
+                </form>
+                <p id="manage-error" class="mt-3 hidden text-xs font-medium text-rose-600"></p>
+                <p class="mt-3 text-xs text-slate-500">
+                  Sample PNR: <button type="button" onclick="fillSamplePnr('manage')" class="font-mono font-bold text-sky-700 hover:underline">AV-2026-84R (Al-Rashid)</button> &middot; Add 30kg bags, select seats, or view your e-ticket.
+                </p>
+              </div>
+
+              <!-- PANEL C: ONLINE CHECK-IN -->
+              <div id="panel-checkin" class="hidden">
+                <form onsubmit="retrieveBooking(event, 'checkin')" class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                  <div>
+                    <label for="checkin-pnr" class="block text-xs font-semibold text-slate-600 mb-1">Booking Reference (PNR)</label>
+                    <input id="checkin-pnr" type="text" required value="AV-2026-84R" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 font-mono text-sm font-bold text-[#0B132B] uppercase focus:border-sky-500 focus:bg-white focus:outline-none" />
+                  </div>
+                  <div>
+                    <label for="checkin-name" class="block text-xs font-semibold text-slate-600 mb-1">Passenger Last Name</label>
+                    <input id="checkin-name" type="text" required value="Al-Rashid" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm font-bold text-[#0B132B] focus:border-sky-500 focus:bg-white focus:outline-none" />
+                  </div>
+                  <div class="flex items-end">
+                    <button type="submit" class="w-full rounded-xl bg-amber-400 px-6 py-3.5 text-sm font-extrabold text-slate-950 hover:bg-amber-300 transition-colors">
+                      Check In &amp; Issue Boarding Pass
+                    </button>
+                  </div>
+                </form>
+                <p id="checkin-error" class="mt-3 hidden text-xs font-medium text-rose-600"></p>
+                <p class="mt-3 text-xs text-slate-500">
+                  Online check-in opens 48 hours and closes 90 minutes before departure. Sample: <button type="button" onclick="fillSamplePnr('checkin')" class="font-mono font-bold text-sky-700 hover:underline">AV-2026-84R</button>
+                </p>
+              </div>
+
+              <!-- PANEL D: LIVE FLIGHT STATUS -->
+              <div id="panel-status" class="hidden space-y-4">
+                <div class="flex flex-col gap-3 sm:flex-row">
+                  <label for="status-search" class="sr-only">Filter flights</label>
+                  <input
+                    id="status-search"
+                    type="text"
+                    oninput="renderFlightStatusList(this.value)"
+                    placeholder="Search Year 1 flights by number (AV-302, AV-102), city (Dhaka, Jeddah, Kochi, Dammam), or code..."
+                    class="flex-1 rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-xs font-medium text-[#0B132B] focus:border-sky-500 focus:bg-white focus:outline-none"
+                  />
+                </div>
+                <div id="flight-status-grid" class="grid grid-cols-1 gap-3 md:grid-cols-2"></div>
+              </div>
+
+              <!-- =============================================================== -->
+              <!-- MULTI-STEP BOOKING WORKSPACE (Expands Smoothly on Search)       -->
+              <!-- =============================================================== -->
+              <div id="booking-flow-container" class="mt-8 hidden border-t border-slate-200 pt-7">
+                <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div>
+                    <h2 id="booking-route-title" class="font-display text-xl font-extrabold text-[#0B132B]">RUH &rarr; DAC</h2>
+                    <p id="booking-route-sub" class="text-xs font-medium text-slate-500 mt-0.5">Select your flights and fare bundle</p>
+                  </div>
+                  <div class="flex items-center gap-1.5 text-xs overflow-x-auto pb-1">
+                    <button type="button" onclick="goToBookingStep(1)" id="step-tab-1" class="rounded-lg bg-[#0B132B] px-3 py-1.5 font-bold text-white whitespace-nowrap shrink-0">1. Flights &amp; Fares</button>
+                    <span class="text-slate-300">/</span>
+                    <button type="button" onclick="goToBookingStep(2)" id="step-tab-2" class="rounded-lg bg-slate-100 px-3 py-1.5 font-medium text-slate-600 whitespace-nowrap shrink-0">2. Baggage &amp; Seats</button>
+                    <span class="text-slate-300">/</span>
+                    <button type="button" onclick="goToBookingStep(3)" id="step-tab-3" class="rounded-lg bg-slate-100 px-3 py-1.5 font-medium text-slate-600 whitespace-nowrap shrink-0">3. Details &amp; Pay</button>
+                    <span class="text-slate-300">/</span>
+                    <button type="button" onclick="goToBookingStep(4)" id="step-tab-4" class="rounded-lg bg-slate-100 px-3 py-1.5 font-medium text-slate-600 whitespace-nowrap shrink-0">4. Boarding Pass</button>
+                  </div>
+                </div>
+
+                <!-- STEP 1: OUTBOUND + RETURN FLIGHTS & FARE BUNDLES -->
+                <div id="booking-step-1" class="space-y-8">
+                  <div>
+                    <div class="flex items-center justify-between mb-3">
+                      <h3 id="outbound-heading" class="text-xs font-bold tracking-wider text-sky-700 uppercase">Outbound Flight</h3>
+                      <span id="outbound-date-label" class="font-mono text-xs font-semibold text-slate-500"></span>
+                    </div>
+                    <div id="outbound-flight-list" class="space-y-3"></div>
+                  </div>
+
+                  <div id="return-flight-section">
+                    <div class="flex items-center justify-between mb-3">
+                      <h3 id="return-heading" class="text-xs font-bold tracking-wider text-amber-700 uppercase">Return Flight</h3>
+                      <span id="return-date-label" class="font-mono text-xs font-semibold text-slate-500"></span>
+                    </div>
+                    <div id="return-flight-list" class="space-y-3"></div>
+                  </div>
+
+                  <!-- Fare Bundles -->
+                  <div>
+                    <h3 class="mb-3 text-xs font-bold tracking-wider text-slate-700 uppercase">Choose Your Fare Bundle</h3>
+                    <div class="grid grid-cols-1 gap-5 md:grid-cols-3">
+                      <!-- Saver Basic -->
+                      <div id="tier-card-saver" onclick="selectFareTier('saver')" class="cursor-pointer rounded-2xl border border-slate-200 bg-slate-50/70 p-5 transition-all hover:border-sky-400 flex flex-col justify-between">
+                        <div>
+                          <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold uppercase text-slate-500">Saver Basic</span>
+                            <span class="font-mono text-xs font-bold text-[#0B132B]" id="tier-price-saver">+0 SAR</span>
+                          </div>
+                          <p class="mt-2 text-lg font-extrabold text-[#0B132B]">Carry-On Light</p>
+                          <ul class="mt-4 space-y-2 text-xs text-slate-600">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="h-3.5 w-3.5 text-sky-600 shrink-0"></i><span>Base point-to-point fare</span></li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="h-3.5 w-3.5 text-sky-600 shrink-0"></i><span>7kg cabin hand luggage included</span></li>
+                            <li class="flex items-center gap-2 text-slate-400"><i data-lucide="x" class="h-3.5 w-3.5 shrink-0"></i><span>No checked hold baggage included</span></li>
+                          </ul>
+                        </div>
+                        <div class="mt-5 pt-3 border-t border-slate-200 text-xs font-bold text-sky-700" id="tier-status-saver">Select Saver Basic</div>
+                      </div>
+
+                      <!-- Diaspora / Family Bundle -->
+                      <div id="tier-card-diaspora" onclick="selectFareTier('diaspora')" class="cursor-pointer rounded-2xl border-2 border-amber-400 bg-amber-50/50 p-5 transition-all flex flex-col justify-between shadow-sm">
+                        <div>
+                          <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold uppercase text-amber-700">Diaspora / Family Bundle</span>
+                            <span class="font-mono text-xs font-bold text-amber-700" id="tier-price-diaspora">+145 SAR</span>
+                          </div>
+                          <p class="mt-2 text-lg font-extrabold text-[#0B132B]">30kg Bag &amp; Family Seats</p>
+                          <ul class="mt-4 space-y-2 text-xs text-slate-700">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="h-3.5 w-3.5 text-amber-600 shrink-0"></i><span><strong class="text-[#0B132B]">30kg checked bag</strong> + 7kg cabin bag</span></li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="h-3.5 w-3.5 text-amber-600 shrink-0"></i><span>Adjacent family seat allocation</span></li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="h-3.5 w-3.5 text-amber-600 shrink-0"></i><span>Baggage certainty for VFR &amp; Umrah</span></li>
+                          </ul>
+                        </div>
+                        <div class="mt-5 pt-3 border-t border-amber-200 text-xs font-extrabold text-amber-700" id="tier-status-diaspora">Selected</div>
+                      </div>
+
+                      <!-- Flexi Plus -->
+                      <div id="tier-card-flexi" onclick="selectFareTier('flexi')" class="cursor-pointer rounded-2xl border border-slate-200 bg-slate-50/70 p-5 transition-all hover:border-sky-400 flex flex-col justify-between">
+                        <div>
+                          <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold uppercase text-sky-700">Flexi Plus</span>
+                            <span class="font-mono text-xs font-bold text-sky-700" id="tier-price-flexi">+240 SAR</span>
+                          </div>
+                          <p class="mt-2 text-lg font-extrabold text-[#0B132B]">SME &amp; Schedule Flexibility</p>
+                          <ul class="mt-4 space-y-2 text-xs text-slate-600">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="h-3.5 w-3.5 text-sky-600 shrink-0"></i><span>30kg checked bag + 7kg cabin bag</span></li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="h-3.5 w-3.5 text-sky-600 shrink-0"></i><span>Flexible changes up to 6h before flight</span></li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="h-3.5 w-3.5 text-sky-600 shrink-0"></i><span>Priority boarding &amp; front-row option</span></li>
+                          </ul>
+                        </div>
+                        <div class="mt-5 pt-3 border-t border-slate-200 text-xs font-bold text-sky-700" id="tier-status-flexi">Select Flexi Plus</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="flex flex-col gap-3 border-t border-slate-200 pt-5 sm:flex-row sm:items-center sm:justify-between">
+                    <div class="text-xs text-slate-600">
+                      Trip Total: <strong id="step1-total" class="font-mono text-xl font-extrabold text-[#0B132B] tabular-nums ml-1">SAR 0</strong>
+                    </div>
+                    <button type="button" onclick="goToBookingStep(2)" class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#0B132B] px-6 py-3 text-xs font-bold text-white hover:bg-[#1C2541] whitespace-nowrap">
+                      <span>Continue to Baggage &amp; Seats</span>
+                      <i data-lucide="arrow-right" class="h-4 w-4 text-sky-400"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- STEP 2: BAGGAGE, MEALS & SEAT MAP -->
+                <div id="booking-step-2" class="hidden space-y-6">
+                  <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                    <div class="space-y-4 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                      <h3 class="text-sm font-extrabold text-[#0B132B]">Add-Ons &amp; Baggage</h3>
+
+                      <div class="flex items-center justify-between rounded-xl border border-slate-200 bg-white p-4">
+                        <div>
+                          <span class="block text-xs font-bold text-[#0B132B]">Extra Checked Baggage (+15kg per leg)</span>
+                          <span id="anc-bag-price" class="text-[11px] text-slate-500 font-mono">+95 SAR per piece</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                          <button type="button" onclick="updateExtraBags(-1)" class="h-8 w-8 rounded-lg border border-slate-300 bg-slate-50 font-bold text-[#0B132B] hover:border-sky-500">-</button>
+                          <span id="extra-bags-count" class="w-5 text-center font-mono text-sm font-bold text-[#0B132B] tabular-nums">0</span>
+                          <button type="button" onclick="updateExtraBags(1)" class="h-8 w-8 rounded-lg border border-slate-300 bg-slate-50 font-bold text-[#0B132B] hover:border-sky-500">+</button>
+                        </div>
+                      </div>
+
+                      <div class="rounded-xl border border-slate-200 bg-white p-4">
+                        <label for="meal-select" class="block text-xs font-bold text-[#0B132B] mb-2">Pre-Order Inflight Meal (100% Halal)</label>
+                        <select id="meal-select" onchange="updateMeal(this.value)" class="w-full rounded-lg border border-slate-300 bg-slate-50 px-3 py-2 text-xs font-medium text-[#0B132B] focus:border-sky-500 focus:outline-none">
+                          <option value="none">No Pre-Booked Meal (+0 SAR)</option>
+                          <option value="arabic">Chicken Kabsa &amp; Saudi Dates (+45 SAR)</option>
+                          <option value="southasian">Biryani / Veg Thali &amp; Masala Chai (+45 SAR)</option>
+                          <option value="snack">Chicken Wrap, Tea &amp; Biscuit (+25 SAR)</option>
+                        </select>
+                      </div>
+
+                      <label class="flex cursor-pointer items-center justify-between rounded-xl border border-slate-200 bg-white p-4 hover:border-sky-400">
+                        <div class="flex items-center gap-3">
+                          <input id="priority-checkbox" type="checkbox" onchange="togglePriority(this.checked)" class="h-4 w-4 accent-[#0B132B]" />
+                          <div>
+                            <span class="block text-xs font-bold text-[#0B132B]">Priority Boarding &amp; Fast Bag Drop</span>
+                            <span class="text-[11px] text-slate-500">Included free in Flexi Plus</span>
+                          </div>
+                        </div>
+                        <span id="anc-priority-price" class="font-mono text-xs font-bold text-sky-700">+55 SAR</span>
+                      </label>
+                    </div>
+
+                    <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                      <div class="flex items-center justify-between mb-3">
+                        <div>
+                          <h3 class="text-sm font-extrabold text-[#0B132B]">Select Your Seat (Airbus A320 &middot; 180 Seats)</h3>
+                          <p class="text-[11px] text-slate-600">Seat: <strong id="selected-seat-display" class="font-mono text-amber-700">14A</strong> (<span id="selected-seat-type">Standard</span>)</p>
+                        </div>
+                        <span id="seat-fee-display" class="font-mono text-xs font-bold text-sky-700">+0 SAR</span>
+                      </div>
+                      <div class="mb-3 flex flex-wrap gap-4 text-[11px] text-slate-600">
+                        <span><strong class="text-amber-700">Rows 1–2</strong> Front Row (+60 SAR)</span>
+                        <span><strong class="text-sky-700">Row 12</strong> Extra Legroom (+75 SAR)</span>
+                        <span><strong class="text-[#0B132B]">Row 14</strong> Standard (+0 SAR)</span>
+                      </div>
+                      <div id="cabin-seat-grid" class="space-y-2 rounded-xl border border-slate-200 bg-white p-3.5"></div>
+                    </div>
+                  </div>
+
+                  <div class="flex flex-col gap-3 border-t border-slate-200 pt-5 sm:flex-row sm:items-center sm:justify-between">
+                    <button type="button" onclick="goToBookingStep(1)" class="rounded-xl border border-slate-300 bg-white px-5 py-2.5 text-xs font-bold text-slate-700 hover:bg-slate-50">&larr; Back to Flights</button>
+                    <div class="flex items-center gap-4">
+                      <span class="text-xs text-slate-600">Total: <strong id="step2-total" class="font-mono text-xl font-extrabold text-[#0B132B] tabular-nums">SAR 0</strong></span>
+                      <button type="button" onclick="goToBookingStep(3)" class="inline-flex items-center gap-2 rounded-xl bg-[#0B132B] px-6 py-3 text-xs font-bold text-white hover:bg-[#1C2541] whitespace-nowrap">
+                        <span>Passenger Details</span>
+                        <i data-lucide="arrow-right" class="h-4 w-4 text-sky-400"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- STEP 3: PASSENGER DETAILS & PAYMENT -->
+                <div id="booking-step-3" class="hidden">
+                  <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+                    <form id="checkout-form" onsubmit="completeBooking(event)" class="space-y-4 rounded-2xl border border-slate-200 bg-slate-50 p-5 lg:col-span-2">
+                      <h3 id="checkout-form-title" class="text-sm font-extrabold text-[#0B132B]">Lead Passenger Information</h3>
+                      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                        <div>
+                          <label for="pax-name" class="block text-xs font-semibold text-slate-600 mb-1">Full Name (as on Passport)</label>
+                          <input id="pax-name" type="text" required value="Tariq Al-Rashid" class="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-xs font-medium text-[#0B132B] focus:border-sky-500 focus:outline-none" />
+                        </div>
+                        <div>
+                          <label for="pax-doc" id="pax-doc-label" class="block text-xs font-semibold text-slate-600 mb-1">Passport / Iqama / National ID</label>
+                          <input id="pax-doc" type="text" required value="P9048211" class="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 font-mono text-xs font-medium text-[#0B132B] focus:border-sky-500 focus:outline-none" />
+                        </div>
+                        <div>
+                          <label for="pax-email" class="block text-xs font-semibold text-slate-600 mb-1">Email Address</label>
+                          <input id="pax-email" type="email" required value="tariq.alrashid@example.com" class="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-xs font-medium text-[#0B132B] focus:border-sky-500 focus:outline-none" />
+                        </div>
+                        <div>
+                          <label for="pax-lang" class="block text-xs font-semibold text-slate-600 mb-1">Preferred Support Language</label>
+                          <select id="pax-lang" class="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-xs font-medium text-[#0B132B] focus:border-sky-500 focus:outline-none">
+                            <option value="English">English</option>
+                            <option value="Arabic (العربية)">Arabic (العربية)</option>
+                            <option value="Bengali (বাংলা)">Bengali (বাংলা)</option>
+                            <option value="Malayalam (മലയാളം)">Malayalam (മലയാളം)</option>
+                            <option value="Sinhala (සිංහල)">Sinhala (සිංහල)</option>
+                            <option value="Hindi / Urdu">Hindi / Urdu</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div>
+                        <span class="block text-xs font-semibold text-slate-600 mb-2">Select Payment Method</span>
+                        <div class="grid grid-cols-3 gap-3">
+                          <button type="button" id="pay-mada" onclick="selectPaymentMethod('mada')" class="rounded-xl border-2 border-[#0B132B] bg-white p-3 text-center text-xs font-extrabold text-[#0B132B] transition-colors">mada / Sadad</button>
+                          <button type="button" id="pay-apple" onclick="selectPaymentMethod('apple')" class="rounded-xl border border-slate-300 bg-white p-3 text-center text-xs font-semibold text-slate-600 hover:border-slate-400 transition-colors">Apple Pay</button>
+                          <button type="button" id="pay-card" onclick="selectPaymentMethod('card')" class="rounded-xl border border-slate-300 bg-white p-3 text-center text-xs font-semibold text-slate-600 hover:border-slate-400 transition-colors">Visa / Mastercard</button>
+                        </div>
+                      </div>
+
+                      <div class="flex items-center justify-between pt-2">
+                        <button type="button" onclick="goToBookingStep(2)" class="rounded-xl border border-slate-300 bg-white px-5 py-2.5 text-xs font-bold text-slate-700 hover:bg-slate-100">&larr; Back</button>
+                        <button type="submit" class="inline-flex items-center gap-2 rounded-xl bg-amber-400 px-6 py-3 text-xs font-extrabold text-slate-950 hover:bg-amber-300 shadow-sm">
+                          <i data-lucide="ticket" class="h-4 w-4"></i>
+                          <span id="confirm-booking-btn-label">Confirm &amp; Issue Boarding Pass</span>
+                        </button>
+                      </div>
+                    </form>
+
+                    <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5 flex flex-col justify-between">
+                      <div>
+                        <h3 class="text-sm font-extrabold text-[#0B132B] mb-4">Fare Breakdown</h3>
+                        <div id="checkout-breakdown" class="space-y-2.5 text-xs text-slate-600 border-b border-slate-200 pb-4 tabular-nums"></div>
+                      </div>
+                      <div class="pt-4 flex items-baseline justify-between">
+                        <span class="text-xs font-semibold text-slate-500">Total (Incl. Taxes)</span>
+                        <span id="step3-total" class="font-mono text-2xl font-extrabold text-[#0B132B] tabular-nums">SAR 0</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- STEP 4: DIGITAL BOARDING PASS (OUTBOUND + RETURN LEGS) -->
+                <div id="booking-step-4" class="hidden">
+                  <div id="boarding-pass-card" class="mx-auto max-w-3xl rounded-2xl border border-slate-200 bg-white shadow-xl overflow-hidden">
+                    <div class="bg-[#0B132B] px-6 py-5 sm:px-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-white">
+                      <div>
+                        <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-sky-400">Electronic Itinerary &amp; Boarding Pass</span>
+                        <h3 class="font-display text-2xl font-extrabold mt-0.5">Avalon Airlines</h3>
+                      </div>
+                      <div class="text-left sm:text-right">
+                        <span class="block text-[11px] text-slate-400 uppercase">Booking Reference (PNR)</span>
+                        <span id="bp-pnr" class="font-mono text-xl font-extrabold text-amber-400">AV-2026-84R</span>
+                      </div>
+                    </div>
+
+                    <div class="p-6 sm:p-8">
+                      <div class="grid grid-cols-2 gap-4 pb-5 border-b border-slate-200 text-xs sm:grid-cols-4">
+                        <div><span class="block text-slate-500">Passenger</span><strong id="bp-name" class="text-[#0B132B] text-sm font-bold">Tariq Al-Rashid</strong></div>
+                        <div><span class="block text-slate-500">Fare Bundle</span><strong id="bp-tier" class="text-amber-700 text-sm font-bold">Diaspora / Family</strong></div>
+                        <div><span class="block text-slate-500">Seat / Block</span><strong id="bp-seat" class="font-mono text-[#0B132B] text-sm font-bold">14A</strong></div>
+                        <div><span class="block text-slate-500">Payment</span><strong id="bp-pay" class="text-sky-700 text-sm font-bold">mada / Sadad</strong></div>
+                      </div>
+
+                      <!-- Outbound Leg -->
+                      <div class="py-5 border-b border-dashed border-slate-300">
+                        <div class="mb-2 flex items-center justify-between text-xs">
+                          <span class="font-bold uppercase tracking-wider text-sky-700">Outbound Leg &middot; <span id="bp-out-flight" class="font-mono">AV-302</span></span>
+                          <span id="bp-out-date" class="font-mono font-semibold text-slate-500">2026-12-10</span>
+                        </div>
+                        <div class="grid grid-cols-3 items-center text-center">
+                          <div class="text-left">
+                            <span id="bp-orig-code" class="font-display text-2xl font-extrabold text-[#0B132B]">RUH</span>
+                            <span id="bp-orig-name" class="block text-xs text-slate-500">Riyadh</span>
+                            <span id="bp-dep" class="font-mono text-sm font-bold text-sky-700 mt-1 block">22:15</span>
+                          </div>
+                          <div class="flex flex-col items-center">
+                            <span id="bp-dur" class="font-mono text-[11px] text-slate-500">5h 40m</span>
+                            <div class="my-1.5 flex w-full items-center gap-2">
+                              <div class="h-px flex-1 bg-slate-300"></div>
+                              <i data-lucide="plane" class="h-4 w-4 text-sky-600"></i>
+                              <div class="h-px flex-1 bg-slate-300"></div>
+                            </div>
+                            <span class="text-[11px] text-slate-600">Non-stop &middot; Gate <span id="bp-out-gate" class="font-mono font-bold">312</span></span>
+                          </div>
+                          <div class="text-right">
+                            <span id="bp-dest-code" class="font-display text-2xl font-extrabold text-[#0B132B]">DAC</span>
+                            <span id="bp-dest-name" class="block text-xs text-slate-500">Dhaka</span>
+                            <span id="bp-arr" class="font-mono text-sm font-bold text-sky-700 mt-1 block">06:55 (+1)</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Return Leg -->
+                      <div id="bp-return-leg" class="py-5 border-b border-dashed border-slate-300">
+                        <div class="mb-2 flex items-center justify-between text-xs">
+                          <span class="font-bold uppercase tracking-wider text-amber-700">Return Leg &middot; <span id="bp-ret-flight" class="font-mono">AV-303</span></span>
+                          <span id="bp-ret-date" class="font-mono font-semibold text-slate-500">2026-12-24</span>
+                        </div>
+                        <div class="grid grid-cols-3 items-center text-center">
+                          <div class="text-left">
+                            <span id="bp-ret-orig-code" class="font-display text-2xl font-extrabold text-[#0B132B]">DAC</span>
+                            <span id="bp-ret-orig-name" class="block text-xs text-slate-500">Dhaka</span>
+                            <span id="bp-ret-dep" class="font-mono text-sm font-bold text-amber-700 mt-1 block">08:00</span>
+                          </div>
+                          <div class="flex flex-col items-center">
+                            <span id="bp-ret-dur" class="font-mono text-[11px] text-slate-500">5h 55m</span>
+                            <div class="my-1.5 flex w-full items-center gap-2">
+                              <div class="h-px flex-1 bg-slate-300"></div>
+                              <i data-lucide="plane" class="h-4 w-4 text-amber-600"></i>
+                              <div class="h-px flex-1 bg-slate-300"></div>
+                            </div>
+                            <span class="text-[11px] text-slate-600">Non-stop &middot; Gate <span id="bp-ret-gate" class="font-mono font-bold">B4</span></span>
+                          </div>
+                          <div class="text-right">
+                            <span id="bp-ret-dest-code" class="font-display text-2xl font-extrabold text-[#0B132B]">RUH</span>
+                            <span id="bp-ret-dest-name" class="block text-xs text-slate-500">Riyadh</span>
+                            <span id="bp-ret-arr" class="font-mono text-sm font-bold text-amber-700 mt-1 block">11:55</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="mt-5 flex flex-col gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4 sm:flex-row sm:items-center sm:justify-between text-xs">
+                        <div class="space-y-1">
+                          <div class="font-bold text-[#0B132B]" id="bp-baggage-summary">Baggage: 7kg Cabin + 30kg Checked</div>
+                          <div class="text-slate-600" id="bp-addons-summary">Support: English &middot; Airbus A320 (180Y)</div>
+                        </div>
+                        <div class="flex items-center gap-5">
+                          <svg viewBox="0 0 84 32" class="h-8 w-auto hidden sm:block" aria-hidden="true">
+                            <rect x="0" y="0" width="3" height="32" fill="#0B132B" /><rect x="5" y="0" width="2" height="32" fill="#0B132B" />
+                            <rect x="9" y="0" width="4" height="32" fill="#0B132B" /><rect x="16" y="0" width="1.5" height="32" fill="#0B132B" />
+                            <rect x="20" y="0" width="3" height="32" fill="#0B132B" /><rect x="26" y="0" width="2" height="32" fill="#0B132B" />
+                            <rect x="30" y="0" width="5" height="32" fill="#0B132B" /><rect x="38" y="0" width="2" height="32" fill="#0B132B" />
+                            <rect x="43" y="0" width="3" height="32" fill="#0B132B" /><rect x="49" y="0" width="1.5" height="32" fill="#0B132B" />
+                            <rect x="54" y="0" width="4" height="32" fill="#0B132B" /><rect x="61" y="0" width="2" height="32" fill="#0B132B" />
+                            <rect x="66" y="0" width="3" height="32" fill="#0B132B" /><rect x="72" y="0" width="5" height="32" fill="#0B132B" />
+                            <rect x="80" y="0" width="3" height="32" fill="#0B132B" />
+                          </svg>
+                          <div class="text-left sm:text-right">
+                            <span class="block text-slate-500">Total Paid</span>
+                            <span id="bp-total" class="font-mono text-xl font-extrabold text-[#0B132B] tabular-nums">SAR 0</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="mt-6 flex flex-wrap items-center justify-between gap-3 no-print">
+                        <button type="button" onclick="window.print()" class="inline-flex items-center gap-2 rounded-xl bg-[#0B132B] px-5 py-2.5 text-xs font-bold text-white hover:bg-[#1C2541]">
+                          <i data-lucide="printer" class="h-4 w-4 text-sky-400"></i>
+                          <span>Print Boarding Pass</span>
+                        </button>
+                        <button type="button" onclick="goToBookingStep(1)" class="rounded-xl border border-slate-300 px-5 py-2.5 text-xs font-bold text-slate-700 hover:bg-slate-50">
+                          Modify or Book Another Flight
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- 2. POPULAR LAUNCH FARES & CORRIDOR NETWORK (LIGHT SURFACE)          -->
+      <!-- =================================================================== -->
+      <section id="destinations" class="py-16 lg:py-22 bg-[#F8FAFC] scroll-mt-20">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between mb-10">
+            <div class="max-w-2xl">
+              <p class="text-xs font-bold tracking-wider text-sky-700 uppercase mb-2">Year 1 Launch Fleet &middot; 3 Airbus A320 Aircraft</p>
+              <h2 class="font-display text-3xl font-extrabold tracking-tight text-[#0B132B] sm:text-4xl" style="text-wrap: balance;">
+                Explore Our Year 1 Launch Fares
+              </h2>
+              <p class="mt-2 text-sm text-slate-600">
+                Direct point-to-point routes from Riyadh (RUH) across core Saudi trunks and proven South Asian diaspora corridors, expanding regionally as new aircraft arrive.
+              </p>
+            </div>
+            <div class="inline-flex rounded-xl bg-white p-1 border border-slate-200 shadow-sm shrink-0">
+              <button type="button" onclick="switchDestPhase('year1')" id="dest-tab-year1" class="rounded-lg bg-[#0B132B] px-4 py-2 text-xs font-bold text-white whitespace-nowrap">Year 1 Launch (4)</button>
+              <button type="button" onclick="switchDestPhase('upcoming')" id="dest-tab-upcoming" class="rounded-lg px-4 py-2 text-xs font-semibold text-slate-600 hover:text-[#0B132B] whitespace-nowrap">Upcoming Expansion (4)</button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 items-start">
+            <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:col-span-7" id="destination-cards-grid"></div>
+
+            <!-- Interactive Route Map -->
+            <div class="lg:col-span-5 rounded-2xl border border-slate-200 bg-[#0B132B] p-6 text-white shadow-xl">
+              <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
+                <h3 class="text-sm font-bold text-white">Riyadh (RUH) Year 1 Network</h3>
+                <span class="text-xs text-sky-400">Click active city to book</span>
+              </div>
+              <div class="rounded-xl border border-white/10 bg-[#070D1E] p-3">
+                <svg viewBox="0 0 540 280" class="w-full h-auto" role="img" aria-label="Avalon Year 1 route network from Riyadh">
+                  <line x1="0" y1="70" x2="540" y2="70" stroke="#1C2541" stroke-width="1" />
+                  <line x1="0" y1="140" x2="540" y2="140" stroke="#1C2541" stroke-width="1" />
+                  <line x1="0" y1="210" x2="540" y2="210" stroke="#1C2541" stroke-width="1" />
+                  <line x1="135" y1="0" x2="135" y2="280" stroke="#1C2541" stroke-width="1" />
+                  <line x1="270" y1="0" x2="270" y2="280" stroke="#1C2541" stroke-width="1" />
+                  <line x1="405" y1="0" x2="405" y2="280" stroke="#1C2541" stroke-width="1" />
+
+                  <!-- Upcoming Phase 2+ routes (muted) -->
+                  <path d="M 190 128 Q 145 112 108 124" fill="none" stroke="#475569" stroke-width="1.2" stroke-dasharray="4 4" />
+                  <path d="M 190 128 Q 125 84 74 92" fill="none" stroke="#475569" stroke-width="1.2" stroke-dasharray="4 4" />
+                  <path d="M 190 128 Q 280 112 360 148" fill="none" stroke="#475569" stroke-width="1.2" stroke-dasharray="4 4" />
+                  <path d="M 190 128 Q 315 190 424 232" fill="none" stroke="#475569" stroke-width="1.2" stroke-dasharray="4 4" />
+
+                  <!-- Active Year 1 routes (3 aircraft) -->
+                  <path d="M 190 128 Q 145 142 118 164" fill="none" stroke="#38BDF8" stroke-width="2" class="animate-route-arc" />
+                  <path d="M 190 128 Q 210 108 234 115" fill="none" stroke="#38BDF8" stroke-width="2" class="animate-route-arc" />
+                  <path d="M 190 128 Q 285 170 382 215" fill="none" stroke="#F59E0B" stroke-width="2" class="animate-route-arc" />
+                  <path d="M 190 128 Q 345 78 474 132" fill="none" stroke="#F59E0B" stroke-width="2" class="animate-route-arc" />
+
+                  <!-- Upcoming nodes -->
+                  <g class="cursor-pointer" onclick="notifyRoute('Cairo (CAI)')"><circle cx="74" cy="92" r="4" fill="#64748B" /><text x="34" y="80" fill="#94A3B8" font-size="9" font-family="JetBrains Mono, monospace">CAI (Planned)</text></g>
+                  <g class="cursor-pointer" onclick="notifyRoute('Madinah (MED)')"><circle cx="108" cy="124" r="4" fill="#64748B" /><text x="24" y="128" fill="#94A3B8" font-size="9" font-family="JetBrains Mono, monospace">MED (Planned)</text></g>
+                  <g class="cursor-pointer" onclick="notifyRoute('Mumbai (BOM)')"><circle cx="360" cy="148" r="4" fill="#64748B" /><text x="334" y="136" fill="#94A3B8" font-size="9" font-family="JetBrains Mono, monospace">BOM (Planned)</text></g>
+                  <g class="cursor-pointer" onclick="notifyRoute('Colombo (CMB)')"><circle cx="424" cy="232" r="4" fill="#64748B" /><text x="432" y="236" fill="#94A3B8" font-size="9" font-family="JetBrains Mono, monospace">CMB (Planned)</text></g>
+
+                  <!-- Active Year 1 nodes -->
+                  <g class="cursor-pointer" onclick="quickBook('RUH','JED')"><circle cx="118" cy="164" r="5.5" fill="#38BDF8" /><text x="68" y="182" fill="#E2E8F0" font-size="10" font-family="JetBrains Mono, monospace" font-weight="700">JED · Jeddah</text></g>
+                  <g class="cursor-pointer" onclick="quickBook('RUH','DMM')"><circle cx="234" cy="115" r="5.5" fill="#38BDF8" /><text x="238" y="106" fill="#E2E8F0" font-size="10" font-family="JetBrains Mono, monospace" font-weight="700">DMM · Dammam</text></g>
+                  <g class="cursor-pointer" onclick="quickBook('RUH','COK')"><circle cx="382" cy="215" r="5.5" fill="#F59E0B" /><text x="358" y="233" fill="#E2E8F0" font-size="10" font-family="JetBrains Mono, monospace" font-weight="700">COK · Kochi</text></g>
+                  <g class="cursor-pointer" onclick="quickBook('RUH','DAC')"><circle cx="474" cy="132" r="6" fill="#F59E0B" /><text x="444" y="119" fill="#E2E8F0" font-size="10" font-family="JetBrains Mono, monospace" font-weight="700">DAC · Dhaka</text></g>
+                  <g><circle cx="190" cy="128" r="12" fill="#38BDF8" fill-opacity="0.2" /><circle cx="190" cy="128" r="6.5" fill="#F59E0B" stroke="#FFFFFF" stroke-width="2" /><text x="164" y="152" fill="#FFFFFF" font-size="11" font-family="JetBrains Mono, monospace" font-weight="800">RUH · Riyadh</text></g>
+                </svg>
+              </div>
+              <div class="mt-3 flex flex-wrap items-center gap-4 text-[11px] text-slate-300">
+                <span class="flex items-center gap-1.5"><span class="h-2 w-2 rounded-full bg-sky-400"></span>Domestic Year 1</span>
+                <span class="flex items-center gap-1.5"><span class="h-2 w-2 rounded-full bg-amber-400"></span>Regional Year 1</span>
+                <span class="flex items-center gap-1.5"><span class="h-2 w-2 rounded-full bg-slate-500"></span>Phase 2–3 Planned</span>
+              </div>
+              <p class="mt-3 text-xs leading-relaxed text-slate-300">
+                Year 1 launches with <strong class="text-white">3 Airbus A320 aircraft</strong> (180 seats each) operating 12 daily sectors from Riyadh (RUH) across Jeddah, Dammam, Dhaka, and Kochi.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- 3. TAILOR YOUR TRIP + 96-HOUR SAUDI STOPOVER (WHITE SURFACE)        -->
+      <!-- =================================================================== -->
+      <section id="stopover" class="border-t border-slate-200 bg-white py-16 lg:py-22 scroll-mt-20">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
+          <!-- Competitor-Style Travel Extras Row -->
+          <div>
+            <div class="mb-8 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p class="text-xs font-bold tracking-wider text-sky-700 uppercase mb-1">Pay Only For What You Need</p>
+                <h2 class="font-display text-2xl font-extrabold text-[#0B132B] sm:text-3xl">Customize Your Journey</h2>
+              </div>
+              <a href="#booking-panel" class="text-xs font-bold text-sky-700 hover:underline">Build your trip in Search &rarr;</a>
+            </div>
+
+            <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5 transition-colors hover:border-sky-400">
+                <div class="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-amber-100 text-amber-700">
+                  <i data-lucide="luggage" class="h-5 w-5"></i>
+                </div>
+                <h3 class="font-display text-base font-extrabold text-[#0B132B]">30kg Family Baggage</h3>
+                <p class="mt-1.5 text-xs leading-relaxed text-slate-600">Lock in 30kg checked allowance online via our Diaspora / Family Bundle with zero airport surprises.</p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5 transition-colors hover:border-sky-400">
+                <div class="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-sky-100 text-sky-700">
+                  <i data-lucide="users" class="h-5 w-5"></i>
+                </div>
+                <h3 class="font-display text-base font-extrabold text-[#0B132B]">Sit Together Seating</h3>
+                <p class="mt-1.5 text-xs leading-relaxed text-slate-600">Adjacent family seats, front-row quick exit, or extra-legroom overwing rows on every A320.</p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5 transition-colors hover:border-sky-400">
+                <div class="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700">
+                  <i data-lucide="utensils" class="h-5 w-5"></i>
+                </div>
+                <h3 class="font-display text-base font-extrabold text-[#0B132B]">Halal Regional Meals</h3>
+                <p class="mt-1.5 text-xs leading-relaxed text-slate-600">Pre-order fresh Saudi Kabsa, South Asian Biryani, vegetarian thalis, and spiced masala chai.</p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5 transition-colors hover:border-sky-400">
+                <div class="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-slate-200 text-[#0B132B]">
+                  <i data-lucide="message-circle" class="h-5 w-5"></i>
+                </div>
+                <h3 class="font-display text-base font-extrabold text-[#0B132B]">Multilingual Care</h3>
+                <p class="mt-1.5 text-xs leading-relaxed text-slate-600">24/7 Web &amp; WhatsApp support in Arabic, English, Bengali, Malayalam, Sinhala, Hindi &amp; Urdu.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 96-Hour Saudi Stopover Feature Card -->
+          <div class="rounded-2xl bg-gradient-to-r from-[#0B132B] via-[#1C2541] to-[#0B132B] p-6 sm:p-10 text-white shadow-xl">
+            <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 items-center">
+              <div class="lg:col-span-7 space-y-4">
+                <p class="text-xs font-bold tracking-wider text-amber-400 uppercase">96-Hour Saudi Stopover Visa</p>
+                <h2 class="font-display text-3xl font-extrabold text-white" style="text-wrap: balance;">
+                  Stay a Little Longer in Riyadh or Jeddah
+                </h2>
+                <p class="text-sm leading-relaxed text-slate-300">
+                  Turn a regional journey into two holidays. Using Saudi Arabia's 96-hour Stopover Visa, add a 1 to 3-night Riyadh heritage or Jeddah Umrah stay through our licensed destination partners.
+                </p>
+                <div class="flex flex-wrap gap-2.5 pt-1 text-xs">
+                  <button type="button" onclick="selectStopoverDuration(1)" id="stopover-btn-1" class="rounded-lg bg-amber-400 px-4 py-2 font-bold text-slate-950">1 Night · Riyadh City</button>
+                  <button type="button" onclick="selectStopoverDuration(2)" id="stopover-btn-2" class="rounded-lg bg-[#0B132B] border border-white/15 px-4 py-2 font-semibold text-slate-200 hover:border-sky-400">2 Nights · Diriyah Heritage</button>
+                  <button type="button" onclick="selectStopoverDuration(3)" id="stopover-btn-3" class="rounded-lg bg-[#0B132B] border border-white/15 px-4 py-2 font-semibold text-slate-200 hover:border-sky-400">3 Nights · Jeddah &amp; Umrah</button>
+                </div>
+              </div>
+
+              <div class="lg:col-span-5 rounded-xl border border-white/10 bg-[#070D1E]/90 p-6">
+                <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                  <span id="stopover-card-title" class="text-sm font-bold text-white">1 Night · Riyadh City</span>
+                  <span id="stopover-card-visa" class="font-mono text-xs text-amber-400">Up to 96h Visa</span>
+                </div>
+                <p id="stopover-card-desc" class="mt-3 text-xs leading-relaxed text-slate-300">
+                  Includes 1 hotel night in central Riyadh, airport transfer, and an evening visit to Boulevard Riyadh City before your onward flight.
+                </p>
+                <div class="mt-5 flex items-center justify-between border-t border-white/10 pt-4 text-xs">
+                  <div>
+                    <span class="block text-slate-400">Partner DMC Package</span>
+                    <strong id="stopover-card-price" class="font-mono text-base text-sky-400 tabular-nums">From SAR 320 / guest</strong>
+                  </div>
+                  <button type="button" onclick="quickBook('RUH','JED')" class="rounded-lg bg-sky-400 px-4 py-2 font-bold text-slate-950 hover:bg-sky-300 transition-colors">
+                    Book Stopover
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- 4. TRAVEL INFO, BAGGAGE & YEAR 1 FLEET (LIGHT SURFACE)              -->
+      <!-- =================================================================== -->
+      <section id="travel-info" class="border-t border-slate-200 bg-[#F8FAFC] py-16 lg:py-22 scroll-mt-20">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between mb-8">
+            <div class="max-w-2xl">
+              <p class="text-xs font-bold tracking-wider text-sky-700 uppercase mb-2">Travel Essentials</p>
+              <h2 class="font-display text-3xl font-extrabold tracking-tight text-[#0B132B] sm:text-4xl" style="text-wrap: balance;">
+                Baggage, Fleet &amp; Group Travel
+              </h2>
+            </div>
+            <div class="inline-flex rounded-xl bg-white p-1 border border-slate-200 shadow-sm">
+              <button type="button" onclick="switchTravelTab('baggage')" id="info-tab-baggage" class="rounded-lg bg-[#0B132B] px-3.5 py-2 text-xs font-bold text-white whitespace-nowrap">Baggage Guide</button>
+              <button type="button" onclick="switchTravelTab('onboard')" id="info-tab-onboard" class="rounded-lg px-3.5 py-2 text-xs font-semibold text-slate-600 hover:text-[#0B132B] whitespace-nowrap">Year 1 Fleet (3&times; A320)</button>
+              <button type="button" onclick="switchTravelTab('groups')" id="info-tab-groups" class="rounded-lg px-3.5 py-2 text-xs font-semibold text-slate-600 hover:text-[#0B132B] whitespace-nowrap">Umrah &amp; Family Care</button>
+            </div>
+          </div>
+
+          <div id="travel-info-content"></div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- 5. AVALON CARGO & RESPONSIBLE FLYING (AEROSPACE NAVY SURFACE)       -->
+      <!-- =================================================================== -->
+      <section id="cargo" class="border-t border-white/10 bg-[#0B132B] py-16 lg:py-22 text-white scroll-mt-20">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
+          <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div class="max-w-2xl">
+              <p class="text-xs font-semibold tracking-wider text-amber-400 uppercase mb-2">Avalon Cargo</p>
+              <h2 class="font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl" style="text-wrap: balance;">
+                Belly-Hold Freight &amp; Air Waybill Tracking
+              </h2>
+              <p class="mt-2 text-sm text-slate-300">
+                Fast airport-to-airport cargo capacity on every Year 1 departure across Riyadh, Jeddah, Dammam, Dhaka, and Kochi.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 gap-8 lg:grid-cols-12">
+            <!-- AWB Tracker -->
+            <div class="rounded-2xl border border-white/10 bg-[#1C2541]/70 p-6 sm:p-8 lg:col-span-7">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-5">
+                <h3 class="font-display text-lg font-bold text-white">Track Air Waybill (AWB)</h3>
+                <div class="flex flex-wrap gap-1.5 text-[11px]">
+                  <button type="button" onclick="loadSampleAwb('AV-AWB-401829')" class="rounded-md border border-white/15 bg-[#0B132B] px-2.5 py-1 font-mono text-sky-400 hover:border-sky-400">AV-AWB-401829</button>
+                  <button type="button" onclick="loadSampleAwb('AV-AWB-772910')" class="rounded-md border border-white/15 bg-[#0B132B] px-2.5 py-1 font-mono text-amber-400 hover:border-amber-400">AV-AWB-772910</button>
+                  <button type="button" onclick="loadSampleAwb('AV-AWB-118452')" class="rounded-md border border-white/15 bg-[#0B132B] px-2.5 py-1 font-mono text-slate-300 hover:border-sky-400">AV-AWB-118452</button>
+                </div>
+              </div>
+
+              <form onsubmit="searchAwb(event)" class="flex gap-3 mb-5">
+                <label for="awb-input" class="sr-only">Air Waybill Number</label>
+                <input
+                  id="awb-input"
+                  type="text"
+                  value="AV-AWB-401829"
+                  placeholder="Enter AWB (e.g. AV-AWB-401829)"
+                  class="flex-1 rounded-xl border border-white/15 bg-[#0B132B] px-4 py-2.5 font-mono text-xs text-white focus:border-sky-400 focus:outline-none uppercase"
+                />
+                <button type="submit" class="rounded-xl bg-sky-400 px-5 py-2.5 text-xs font-bold text-slate-950 hover:bg-sky-300 whitespace-nowrap">Track</button>
+              </form>
+
+              <div id="awb-error" class="hidden mb-4 rounded-xl border border-rose-500/40 bg-rose-500/10 px-4 py-2.5 text-xs text-rose-200"></div>
+              <div id="awb-result" class="rounded-xl border border-white/10 bg-[#0B132B] p-5 space-y-5"></div>
+            </div>
+
+            <!-- Freight Estimator -->
+            <div class="rounded-2xl border border-white/10 bg-[#1C2541]/70 p-6 sm:p-8 lg:col-span-5 flex flex-col justify-between">
+              <div>
+                <h3 class="font-display text-lg font-bold text-white mb-1">Estimate Freight Rate</h3>
+                <p class="text-xs text-slate-400 mb-5">Indicative airport-to-airport rates for commercial &amp; courier freight</p>
+
+                <form onsubmit="calculateCargoQuote(event)" class="space-y-4">
+                  <div class="grid grid-cols-2 gap-3">
+                    <div>
+                      <label for="cargo-origin" class="block text-xs text-slate-400 mb-1">From</label>
+                      <select id="cargo-origin" onchange="calculateCargoQuote()" class="w-full rounded-lg border border-white/15 bg-[#0B132B] px-3 py-2 text-xs font-mono text-white focus:border-amber-400 focus:outline-none">
+                        <option value="RUH">RUH &middot; Riyadh</option>
+                        <option value="JED">JED &middot; Jeddah</option>
+                        <option value="DMM">DMM &middot; Dammam</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label for="cargo-dest" class="block text-xs text-slate-400 mb-1">To</label>
+                      <select id="cargo-dest" onchange="calculateCargoQuote()" class="w-full rounded-lg border border-white/15 bg-[#0B132B] px-3 py-2 text-xs font-mono text-white focus:border-amber-400 focus:outline-none">
+                        <option value="DAC">DAC &middot; Dhaka</option>
+                        <option value="COK">COK &middot; Kochi</option>
+                        <option value="JED">JED &middot; Jeddah</option>
+                        <option value="DMM">DMM &middot; Dammam</option>
+                        <option value="RUH">RUH &middot; Riyadh</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label for="cargo-weight" class="block text-xs text-slate-400 mb-1">Weight (kg)</label>
+                    <input id="cargo-weight" type="number" min="25" max="3500" value="450" class="w-full rounded-lg border border-white/15 bg-[#0B132B] px-3.5 py-2.5 font-mono text-xs text-white focus:border-amber-400 focus:outline-none" />
+                  </div>
+
+                  <div>
+                    <label for="cargo-commodity" class="block text-xs text-slate-400 mb-1">Shipment Type</label>
+                    <select id="cargo-commodity" class="w-full rounded-lg border border-white/15 bg-[#0B132B] px-3.5 py-2.5 text-xs text-white focus:border-amber-400 focus:outline-none">
+                      <option value="general">General Commercial Freight</option>
+                      <option value="express">Express Courier &amp; E-Commerce</option>
+                      <option value="perishable">Fresh Produce &amp; Perishables</option>
+                    </select>
+                  </div>
+
+                  <button type="submit" class="w-full rounded-xl bg-amber-400 py-3 text-xs font-bold text-slate-950 hover:bg-amber-300 transition-colors">
+                    Calculate Freight Rate
+                  </button>
+                </form>
+
+                <div class="mt-5 rounded-xl border border-amber-400/30 bg-[#0B132B] p-4 text-center">
+                  <span class="block text-[11px] text-slate-400 uppercase">Estimated Freight Charge</span>
+                  <strong id="cargo-quote-value" class="font-mono text-2xl font-extrabold text-amber-400 tabular-nums">SAR 3,995</strong>
+                  <span id="cargo-quote-note" class="mt-1 block text-[11px] text-slate-400">RUH &rarr; DAC &middot; 450 kg</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- About & Sustainability Compact Row -->
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-2 border-t border-white/10 pt-10">
+            <div class="rounded-2xl border border-white/10 bg-[#1C2541]/50 p-6">
+              <p class="text-xs font-bold uppercase tracking-wider text-sky-400 mb-1.5">About Avalon</p>
+              <h3 class="font-display text-lg font-bold text-white">Supporting Saudi Vision 2030 Connectivity</h3>
+              <p class="mt-2 text-xs leading-relaxed text-slate-300">
+                Headquartered in Riyadh, Avalon is built as a specialist, diaspora-first value airline serving expatriate families, Hajj &amp; Umrah travellers, stopover visitors, and SMEs with reliable point-to-point flying.
+              </p>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-[#1C2541]/50 p-6">
+              <p class="text-xs font-bold uppercase tracking-wider text-amber-400 mb-1.5">Responsible Flying</p>
+              <h3 class="font-display text-lg font-bold text-white">Measurable Fuel &amp; Emissions Discipline</h3>
+              <p class="mt-2 text-xs leading-relaxed text-slate-300">
+                Operational reductions via fuel burn and CO₂ tracking per seat-km, A320neo efficiency where leased, reduced ground-idle taxiing, paperless Electronic Flight Bags, and route-specific ICAO CORSIA compliance.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- =================================================================== -->
+    <!-- 6. FOOTER & CUSTOMER SUPPORT                                        -->
+    <!-- =================================================================== -->
+    <footer class="border-t border-white/10 bg-[#070D1E] pt-14 pb-10 text-xs text-slate-400">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 gap-10 md:grid-cols-12 pb-10 border-b border-white/10">
+          <div class="md:col-span-4 space-y-4">
+            <span class="font-display text-lg font-extrabold tracking-tight text-white block">Avalon</span>
+            <p class="leading-relaxed">
+              Riyadh, Kingdom of Saudi Arabia &middot; Specialist, diaspora-first value airline connecting Saudi Arabia with regional and South Asian communities.
+            </p>
+            <div class="space-y-1 text-slate-300">
+              <div>24/7 Guest Care &amp; WhatsApp: <span class="font-mono text-sky-400">+966 11 000 0849</span></div>
+              <div>Agent &amp; Umrah Group Desk: <span class="font-mono text-amber-400">groups@avalon-air.example</span></div>
+            </div>
+          </div>
+
+          <div class="md:col-span-2 space-y-2.5">
+            <h4 class="font-bold uppercase tracking-wider text-white text-[11px]">Fly Avalon</h4>
+            <ul class="space-y-2">
+              <li><a href="#booking-panel" class="hover:text-sky-400">Book a Flight</a></li>
+              <li><button type="button" onclick="openManageTab('manage')" class="hover:text-sky-400 text-left">Manage Booking</button></li>
+              <li><button type="button" onclick="openManageTab('checkin')" class="hover:text-sky-400 text-left">Online Check-In</button></li>
+              <li><button type="button" onclick="openManageTab('status')" class="hover:text-sky-400 text-left">Flight Status</button></li>
+            </ul>
+          </div>
+
+          <div class="md:col-span-3 space-y-3">
+            <h4 class="font-bold uppercase tracking-wider text-white text-[11px]">Multilingual Support</h4>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" onclick="previewLanguage('Arabic')" class="rounded-lg border border-white/10 bg-[#0B132B] px-2.5 py-1.5 text-[11px] text-slate-200 hover:border-sky-400">العربية</button>
+              <button type="button" onclick="previewLanguage('English')" class="rounded-lg border border-white/10 bg-[#0B132B] px-2.5 py-1.5 text-[11px] text-slate-200 hover:border-sky-400">English</button>
+              <button type="button" onclick="previewLanguage('Bengali')" class="rounded-lg border border-white/10 bg-[#0B132B] px-2.5 py-1.5 text-[11px] text-slate-200 hover:border-sky-400">বাংলা</button>
+              <button type="button" onclick="previewLanguage('Malayalam')" class="rounded-lg border border-white/10 bg-[#0B132B] px-2.5 py-1.5 text-[11px] text-slate-200 hover:border-sky-400">മലയാളം</button>
+              <button type="button" onclick="previewLanguage('Sinhala')" class="rounded-lg border border-white/10 bg-[#0B132B] px-2.5 py-1.5 text-[11px] text-slate-200 hover:border-sky-400">සිංහල</button>
+              <button type="button" onclick="previewLanguage('Hindi')" class="rounded-lg border border-white/10 bg-[#0B132B] px-2.5 py-1.5 text-[11px] text-slate-200 hover:border-sky-400">हिन्दी / اردو</button>
+            </div>
+            <p id="lang-greeting" class="text-[11px] text-sky-400 min-h-[1.25rem]"></p>
+          </div>
+
+          <div class="md:col-span-3 space-y-3">
+            <h4 class="font-bold uppercase tracking-wider text-white text-[11px]">Fare &amp; Route Alerts</h4>
+            <p class="text-slate-400">Get notified on seasonal fares and Phase 2 route launches from Riyadh (RUH).</p>
+            <form onsubmit="submitNewsletter(event)" class="flex gap-2">
+              <label for="newsletter-email" class="sr-only">Email address</label>
+              <input id="newsletter-email" type="email" required placeholder="you@example.com" class="flex-1 rounded-xl border border-white/15 bg-[#0B132B] px-3 py-2 text-xs text-white focus:border-sky-400 focus:outline-none" />
+              <button type="submit" class="rounded-xl bg-amber-400 px-4 py-2 text-xs font-bold text-slate-950 hover:bg-amber-300 whitespace-nowrap">Join</button>
+            </form>
+            <p id="newsletter-feedback" class="hidden text-[11px] text-emerald-400 font-medium"></p>
+          </div>
+        </div>
+
+        <div class="mt-8 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between text-[11px] text-slate-500">
+          <span>&copy; 2026 Avalon &middot; Conceptual Airline Project (IIM Sirmaur Airline Transport Management, 2026)</span>
+          <span>Commercial launch subject to funding, dry-lease agreements, traffic rights, slots &amp; GACA AOC (GACAR Part 119)</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =================================================================== -->
+    <!-- VANILLA JAVASCRIPT APPLICATION LOGIC                                -->
+    <!-- =================================================================== -->
+    <script>
+      const CURRENCY_RATES = {
+        SAR: { symbol: 'SAR ', mult: 1 },
+        USD: { symbol: '$', mult: 0.2667 },
+        INR: { symbol: '₹', mult: 22.4 },
+        BDT: { symbol: '৳', mult: 31.8 },
+        LKR: { symbol: 'LKR ', mult: 78.5 },
+        EGP: { symbol: 'E£', mult: 13.1 },
+      };
+
+      // Active Year 1 Airports (3 Airbus A320 Launch Fleet)
+      const AIRPORTS = {
+        RUH: { code: 'RUH', name: 'Riyadh', country: 'Saudi Arabia', label: 'Riyadh (RUH)' },
+        JED: { code: 'JED', name: 'Jeddah', country: 'Saudi Arabia', label: 'Jeddah (JED)' },
+        DMM: { code: 'DMM', name: 'Dammam', country: 'Saudi Arabia', label: 'Dammam (DMM)' },
+        DAC: { code: 'DAC', name: 'Dhaka', country: 'Bangladesh', label: 'Dhaka (DAC)' },
+        COK: { code: 'COK', name: 'Kochi', country: 'India', label: 'Kochi (COK)' },
+      };
+
+      const DESTINATION_ART = {
+        JED: `<svg viewBox="0 0 320 90" class="w-full h-24" aria-hidden="true"><defs><linearGradient id="skyJED" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0B132B"/><stop offset="100%" stop-color="#0284C7"/></linearGradient></defs><rect width="320" height="90" fill="url(#skyJED)"/><path d="M0 70 Q80 62 160 70 T320 70 V90 H0Z" fill="#070D1E" fill-opacity="0.55"/><path d="M158 68 L158 20 M153 34 Q158 24 163 34" stroke="#38BDF8" stroke-width="2" fill="none"/><rect x="40" y="42" width="16" height="28" fill="#1C2541"/><rect x="64" y="34" width="22" height="36" fill="#1C2541"/><circle cx="248" cy="24" r="10" fill="#F59E0B" fill-opacity="0.85"/></svg>`,
+        DMM: `<svg viewBox="0 0 320 90" class="w-full h-24" aria-hidden="true"><defs><linearGradient id="skyDMM" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0B132B"/><stop offset="100%" stop-color="#1E3A8A"/></linearGradient></defs><rect width="320" height="90" fill="url(#skyDMM)"/><path d="M0 72 Q120 66 240 72 T320 70 V90 H0Z" fill="#070D1E" fill-opacity="0.5"/><ellipse cx="145" cy="56" rx="34" ry="18" fill="#1C2541" stroke="#38BDF8" stroke-width="1.2"/><rect x="210" y="34" width="18" height="38" fill="#1C2541"/><circle cx="74" cy="24" r="9" fill="#38BDF8" fill-opacity="0.7"/></svg>`,
+        DAC: `<svg viewBox="0 0 320 90" class="w-full h-24" aria-hidden="true"><defs><linearGradient id="skyDAC" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1C2541"/><stop offset="100%" stop-color="#0F766E"/></linearGradient></defs><rect width="320" height="90" fill="url(#skyDAC)"/><rect x="95" y="38" width="130" height="36" fill="#0B132B" fill-opacity="0.7"/><polygon points="160,22 185,38 135,38" fill="#F59E0B" fill-opacity="0.8"/><path d="M0 74 Q90 68 180 74 T320 74 V90 H0Z" fill="#070D1E" fill-opacity="0.55"/></svg>`,
+        COK: `<svg viewBox="0 0 320 90" class="w-full h-24" aria-hidden="true"><defs><linearGradient id="skyCOK" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0B132B"/><stop offset="100%" stop-color="#0369A1"/></linearGradient></defs><rect width="320" height="90" fill="url(#skyCOK)"/><path d="M60 72 L95 28 L120 42" stroke="#F59E0B" stroke-width="2" fill="none"/><path d="M0 72 Q100 66 200 72 T320 72 V90 H0Z" fill="#070D1E" fill-opacity="0.55"/><circle cx="245" cy="28" r="11" fill="#F59E0B" fill-opacity="0.85"/></svg>`,
+      };
+
+      const YEAR1_DESTINATIONS = [
+        { code: 'JED', name: 'Jeddah', country: 'Saudi Arabia', tag: 'Red Sea & Umrah Gateway', duration: '1h 35m', freq: '2x Daily · Year 1', baseFare: 215 },
+        { code: 'DMM', name: 'Dammam', country: 'Saudi Arabia', tag: 'Eastern Province Trunk', duration: '1h 05m', freq: '2x Daily · Year 1', baseFare: 165 },
+        { code: 'DAC', name: 'Dhaka', country: 'Bangladesh', tag: 'Proven Diaspora Corridor', duration: '5h 40m', freq: 'Daily Overnight · Year 1', baseFare: 640 },
+        { code: 'COK', name: 'Kochi', country: 'India', tag: 'Proven South Asia VFR', duration: '4h 45m', freq: 'Daily Overnight · Year 1', baseFare: 560 },
+      ];
+
+      const UPCOMING_DESTINATIONS = [
+        { code: 'MED', name: 'Madinah', country: 'Saudi Arabia', tag: 'Pilgrimage & Umrah Access', duration: '1h 25m', phase: 'Years 2–3 Expansion' },
+        { code: 'CMB', name: 'Colombo', country: 'Sri Lanka', tag: 'Sri Lanka & Stopover Link', duration: '5h 10m', phase: 'Years 2–3 Expansion' },
+        { code: 'BOM', name: 'Mumbai', country: 'India', tag: 'West India SME & VFR', duration: '4h 15m', phase: 'Years 2–3 Expansion' },
+        { code: 'CAI', name: 'Cairo', country: 'Egypt', tag: 'North Africa VFR Corridor', duration: '2h 45m', phase: 'Years 4–5 Expansion' },
+      ];
+
+      // Year 1 Bidirectional Schedule operated by 3 Airbus A320 aircraft (12 daily sectors)
+      const ALL_FLIGHTS = [
+        { id: 'AV-102', orig: 'RUH', dest: 'JED', dep: '06:45', arr: '08:20', dur: '1h 35m', fare: 215, status: 'On Time', gate: '304' },
+        { id: 'AV-108', orig: 'RUH', dest: 'JED', dep: '17:30', arr: '19:05', dur: '1h 35m', fare: 250, status: 'Scheduled', gate: '307' },
+        { id: 'AV-103', orig: 'JED', dest: 'RUH', dep: '09:05', arr: '10:40', dur: '1h 35m', fare: 215, status: 'On Time', gate: '12' },
+        { id: 'AV-109', orig: 'JED', dest: 'RUH', dep: '19:50', arr: '21:25', dur: '1h 35m', fare: 245, status: 'Scheduled', gate: '14' },
+
+        { id: 'AV-204', orig: 'RUH', dest: 'DMM', dep: '07:15', arr: '08:20', dur: '1h 05m', fare: 165, status: 'Departed', gate: '301' },
+        { id: 'AV-210', orig: 'RUH', dest: 'DMM', dep: '19:50', arr: '20:55', dur: '1h 05m', fare: 185, status: 'Scheduled', gate: '302' },
+        { id: 'AV-205', orig: 'DMM', dest: 'RUH', dep: '09:00', arr: '10:05', dur: '1h 05m', fare: 165, status: 'On Time', gate: '2' },
+        { id: 'AV-211', orig: 'DMM', dest: 'RUH', dep: '21:35', arr: '22:40', dur: '1h 05m', fare: 185, status: 'Scheduled', gate: '3' },
+
+        { id: 'AV-302', orig: 'RUH', dest: 'DAC', dep: '22:15', arr: '06:55 (+1)', dur: '5h 40m', fare: 640, status: 'On Time', gate: '312' },
+        { id: 'AV-303', orig: 'DAC', dest: 'RUH', dep: '08:00', arr: '11:55', dur: '5h 55m', fare: 630, status: 'On Time', gate: 'B4' },
+
+        { id: 'AV-502', orig: 'RUH', dest: 'COK', dep: '21:40', arr: '04:55 (+1)', dur: '4h 45m', fare: 560, status: 'Boarding', gate: '318' },
+        { id: 'AV-503', orig: 'COK', dest: 'RUH', dep: '06:15', arr: '09:05', dur: '5h 20m', fare: 550, status: 'On Time', gate: 'C3' },
+      ];
+
+      const STOPOVER_PLANS = {
+        1: { title: '1 Night · Riyadh City', visa: 'Up to 96h Visa', desc: 'Includes 1 hotel night in central Riyadh, airport transfer, and an evening visit to Boulevard Riyadh City before your onward flight.', sar: 320 },
+        2: { title: '2 Nights · Diriyah Heritage', visa: '96h Stopover Visa', desc: '2 nights in Riyadh with guided access to UNESCO-listed At-Turaif in Diriyah, traditional Saudi dining, and airport transfers.', sar: 590 },
+        3: { title: '3 Nights · Jeddah & Umrah', visa: '96h Visa + Umrah Access', desc: 'Connect via Jeddah (JED) for 3 hotel nights with historic Al-Balad sightseeing and seamless ground transport for Umrah pilgrims.', sar: 840 },
+      };
+
+      const AWB_DATABASE = {
+        'AV-AWB-401829': {
+          awb: 'AV-AWB-401829',
+          status: 'Loaded on AV-302',
+          route: 'Riyadh (RUH) → Dhaka (DAC)',
+          weight: '1,180 kg · 34 Pieces',
+          commodity: 'Express Courier & Apparel Samples',
+          eta: '06:55 BST (+1)',
+          steps: [
+            { label: 'Accepted at Riyadh Cargo Terminal', time: '18:10 AST', done: true },
+            { label: 'Customs Cleared & Screened', time: '19:45 AST', done: true },
+            { label: 'Loaded onto Flight AV-302', time: '21:30 AST', done: true },
+            { label: 'Arrival & Terminal Release at DAC', time: '06:55 BST', done: false },
+          ],
+        },
+        'AV-AWB-772910': {
+          awb: 'AV-AWB-772910',
+          status: 'In Transit',
+          route: 'Riyadh (RUH) → Kochi (COK)',
+          weight: '920 kg · 22 Pieces',
+          commodity: 'Commercial Electronics & Spares',
+          eta: '04:55 IST (+1)',
+          steps: [
+            { label: 'Accepted at RUH Terminal', time: '18:00 AST', done: true },
+            { label: 'Export Cleared', time: '19:35 AST', done: true },
+            { label: 'Departed RUH on AV-502', time: '21:40 AST', done: true },
+            { label: 'Arrival at Kochi Cargo Hub', time: '04:55 IST', done: false },
+          ],
+        },
+        'AV-AWB-118452': {
+          awb: 'AV-AWB-118452',
+          status: 'Delivered',
+          route: 'Riyadh (RUH) → Jeddah (JED)',
+          weight: '640 kg · 18 Crates',
+          commodity: 'Temperature-Controlled Fresh Produce',
+          eta: '08:20 AST (Completed)',
+          steps: [
+            { label: 'Cold-Room Acceptance at RUH', time: '04:50 AST', done: true },
+            { label: 'Loaded onto AV-102', time: '06:10 AST', done: true },
+            { label: 'Arrived at JED Cargo Facility', time: '08:20 AST', done: true },
+            { label: 'Collected by Consignee', time: '09:35 AST', done: true },
+          ],
+        },
+      };
+
+      const state = {
+        mainTab: 'book',
+        destPhase: 'year1',
+        bookingMode: 'direct',
+        tripType: 'roundTrip',
+        currency: 'SAR',
+        origin: 'RUH',
+        dest: 'DAC',
+        passengers: 1,
+        selectedOutFlightId: 'AV-302',
+        selectedRetFlightId: 'AV-303',
+        fareTier: 'diaspora',
+        extraBags: 0,
+        meal: 'none',
+        priority: false,
+        seat: '14A',
+        seatType: 'Standard',
+        seatFee: 0,
+        paymentMethod: 'mada',
+        stopoverNights: 1,
+        lastIssuedPnr: 'AV-2026-84R',
+        lastIssuedSurname: 'AL-RASHID',
+      };
+
+      function formatMoney(amountInSAR) {
+        const cfg = CURRENCY_RATES[state.currency] || CURRENCY_RATES.SAR;
+        return `${cfg.symbol}${Math.round(amountInSAR * cfg.mult).toLocaleString()}`;
+      }
+
+      function showToast(msg) {
+        const el = document.getElementById('toast-container');
+        document.getElementById('toast-message').textContent = msg;
+        el.classList.remove('hidden');
+        el.classList.add('flex');
+        clearTimeout(window.__toastTimer);
+        window.__toastTimer = setTimeout(() => {
+          el.classList.add('hidden');
+          el.classList.remove('flex');
+        }, 3500);
+      }
+
+      function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        const btn = document.getElementById('mobile-menu-btn');
+        const open = menu.classList.contains('hidden');
+        menu.classList.toggle('hidden', !open);
+        btn.setAttribute('aria-expanded', String(open));
+      }
+
+      function closeMobileMenu() {
+        document.getElementById('mobile-menu').classList.add('hidden');
+        document.getElementById('mobile-menu-btn').setAttribute('aria-expanded', 'false');
+      }
+
+      function switchMainWidgetTab(tab) {
+        state.mainTab = tab;
+        ['book', 'manage', 'checkin', 'status'].forEach((t) => {
+          const btn = document.getElementById(`main-tab-${t}`);
+          const panel = document.getElementById(`panel-${t}`);
+          if (t === tab) {
+            btn.className = 'inline-flex items-center gap-2 rounded-lg bg-[#0B132B] px-4 py-2 text-xs font-bold text-white transition-colors whitespace-nowrap shrink-0';
+            panel.classList.remove('hidden');
+          } else {
+            btn.className = 'inline-flex items-center gap-2 rounded-lg bg-white border border-slate-200 px-4 py-2 text-xs font-semibold text-slate-700 hover:border-slate-300 hover:text-[#0B132B] transition-colors whitespace-nowrap shrink-0';
+            panel.classList.add('hidden');
+          }
+        });
+        if (tab === 'status') renderFlightStatusList(document.getElementById('status-search').value || '');
+      }
+
+      function openManageTab(tab) {
+        switchMainWidgetTab(tab);
+        document.getElementById('booking-panel').scrollIntoView({ behavior: 'smooth' });
+      }
+
+      function getValidDestinations(orig) {
+        const set = new Set();
+        ALL_FLIGHTS.forEach((f) => {
+          if (f.orig === orig) set.add(f.dest);
+        });
+        return Array.from(set);
+      }
+
+      function populateAirportSelects() {
+        const origSel = document.getElementById('origin-select');
+        origSel.innerHTML = Object.values(AIRPORTS)
+          .map((a) => `<option value="${a.code}">${a.label}</option>`)
+          .join('');
+        origSel.value = state.origin;
+        updateDestinationDropdown();
+      }
+
+      function updateDestinationDropdown() {
+        const destSel = document.getElementById('dest-select');
+        const valid = getValidDestinations(state.origin);
+        if (!valid.includes(state.dest)) {
+          state.dest = valid[0] || 'RUH';
+        }
+        destSel.innerHTML = valid
+          .map((code) => {
+            const a = AIRPORTS[code];
+            return `<option value="${a.code}">${a.name} (${a.code}) &middot; ${a.country}</option>`;
+          })
+          .join('');
+        destSel.value = state.dest;
+        syncDefaultFlights();
+      }
+
+      function syncDefaultFlights() {
+        const outList = ALL_FLIGHTS.filter((f) => f.orig === state.origin && f.dest === state.dest);
+        const retList = ALL_FLIGHTS.filter((f) => f.orig === state.dest && f.dest === state.origin);
+        state.selectedOutFlightId = outList[0] ? outList[0].id : '';
+        state.selectedRetFlightId = retList[0] ? retList[0].id : '';
+      }
+
+      function onOriginChange(newOrig) {
+        state.origin = newOrig;
+        updateDestinationDropdown();
+        renderFlightsAndTotals();
+      }
+
+      function onDestinationChange(newDest) {
+        state.dest = newDest;
+        syncDefaultFlights();
+        renderFlightsAndTotals();
+      }
+
+      function swapAirports() {
+        const prevOrig = state.origin;
+        const prevDest = state.dest;
+        const validFromPrevDest = getValidDestinations(prevDest);
+        if (!validFromPrevDest.includes(prevOrig)) {
+          showToast('No direct return route on that airport pair');
+          return;
+        }
+        state.origin = prevDest;
+        state.dest = prevOrig;
+        document.getElementById('origin-select').value = state.origin;
+        updateDestinationDropdown();
+        renderFlightsAndTotals();
+      }
+
+      function onDateChange() {
+        const depEl = document.getElementById('depart-date');
+        const retEl = document.getElementById('return-date');
+        if (retEl.value < depEl.value) {
+          retEl.value = depEl.value;
+          showToast('Return date adjusted to match departure date');
+        }
+        renderFlightsAndTotals();
+      }
+
+      function quickBook(origCode, destCode) {
+        state.origin = origCode;
+        state.dest = destCode;
+        switchMainWidgetTab('book');
+        document.getElementById('origin-select').value = state.origin;
+        updateDestinationDropdown();
+        startBookingSearch();
+        document.getElementById('booking-panel').scrollIntoView({ behavior: 'smooth' });
+      }
+
+      function populatePassengerSelect() {
+        const sel = document.getElementById('pax-select');
+        const lbl = document.getElementById('pax-label');
+        sel.innerHTML = '';
+        if (state.bookingMode === 'direct') {
+          lbl.textContent = 'Guests';
+          [1, 2, 3, 4, 5, 6, 7, 8, 9].forEach((n) => {
+            const opt = document.createElement('option');
+            opt.value = String(n);
+            opt.textContent = `${n}`;
+            sel.appendChild(opt);
+          });
+          state.passengers = 1;
+          sel.value = '1';
+        } else {
+          lbl.textContent = 'Group';
+          [10, 15, 20, 30, 45].forEach((n) => {
+            const opt = document.createElement('option');
+            opt.value = String(n);
+            opt.textContent = `${n} Pax`;
+            sel.appendChild(opt);
+          });
+          state.passengers = 15;
+          sel.value = '15';
+        }
+      }
+
+      function setBookingMode(mode) {
+        state.bookingMode = mode;
+        const dBtn = document.getElementById('mode-direct-btn');
+        const aBtn = document.getElementById('mode-agent-btn');
+        const banner = document.getElementById('agent-banner');
+        const hint = document.getElementById('channel-hint');
+        const searchTxt = document.getElementById('search-btn-text');
+
+        if (mode === 'direct') {
+          dBtn.className = 'rounded-lg bg-[#0B132B] px-3.5 py-1.5 text-xs font-bold text-white whitespace-nowrap';
+          aBtn.className = 'rounded-lg px-3.5 py-1.5 text-xs font-semibold text-slate-600 hover:text-[#0B132B] whitespace-nowrap';
+          banner.classList.add('hidden');
+          hint.textContent = 'Direct Web & WhatsApp-assisted low fares';
+          searchTxt.textContent = 'Search Flights';
+        } else {
+          aBtn.className = 'rounded-lg bg-amber-400 px-3.5 py-1.5 text-xs font-extrabold text-slate-950 whitespace-nowrap';
+          dBtn.className = 'rounded-lg px-3.5 py-1.5 text-xs font-semibold text-slate-600 hover:text-[#0B132B] whitespace-nowrap';
+          banner.classList.remove('hidden');
+          hint.textContent = 'B2B Travel Agent & Licensed Umrah Group Allotments';
+          searchTxt.textContent = 'Check Group Availability';
+        }
+        populatePassengerSelect();
+        renderFlightsAndTotals();
+      }
+
+      function setTripType(type) {
+        state.tripType = type;
+        const rBtn = document.getElementById('trip-round-btn');
+        const oBtn = document.getElementById('trip-oneway-btn');
+        const rWrap = document.getElementById('return-date-wrap');
+        if (type === 'roundTrip') {
+          rBtn.className = 'rounded-lg bg-white px-3.5 py-1.5 text-xs font-bold text-[#0B132B] shadow-sm whitespace-nowrap';
+          oBtn.className = 'rounded-lg px-3.5 py-1.5 text-xs font-medium text-slate-600 hover:text-[#0B132B] whitespace-nowrap';
+          rWrap.classList.remove('opacity-40', 'pointer-events-none');
+        } else {
+          oBtn.className = 'rounded-lg bg-white px-3.5 py-1.5 text-xs font-bold text-[#0B132B] shadow-sm whitespace-nowrap';
+          rBtn.className = 'rounded-lg px-3.5 py-1.5 text-xs font-medium text-slate-600 hover:text-[#0B132B] whitespace-nowrap';
+          rWrap.classList.add('opacity-40', 'pointer-events-none');
+        }
+        renderFlightsAndTotals();
+      }
+
+      function changeCurrency(curr) {
+        state.currency = curr;
+        renderDestinationCards();
+        renderFlightsAndTotals();
+        updateStopoverUI();
+        calculateCargoQuote();
+      }
+
+      function onPassengersChange(val) {
+        state.passengers = Number(val) || 1;
+        renderFlightsAndTotals();
+      }
+
+      function startBookingSearch() {
+        const container = document.getElementById('booking-flow-container');
+        container.classList.remove('hidden');
+        renderFlightsAndTotals();
+        goToBookingStep(1);
+        container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      function fillSamplePnr(prefix) {
+        document.getElementById(`${prefix}-pnr`).value = state.lastIssuedPnr;
+        document.getElementById(`${prefix}-name`).value = state.lastIssuedSurname === 'AL-RASHID' ? 'Al-Rashid' : state.lastIssuedSurname;
+      }
+
+      function retrieveBooking(e, source) {
+        e.preventDefault();
+        const pnrInput = document.getElementById(`${source}-pnr`).value.trim().toUpperCase();
+        const nameInput = document.getElementById(`${source}-name`).value.trim().toUpperCase();
+        const errEl = document.getElementById(`${source}-error`);
+
+        const validPnr = pnrInput === 'AV-2026-84R' || pnrInput === state.lastIssuedPnr;
+        const validName = nameInput.includes('RASHID') || nameInput.includes(state.lastIssuedSurname);
+
+        if (!validPnr || !validName) {
+          errEl.textContent = `No reservation found for PNR "${pnrInput}" and surname "${nameInput}". Try sample PNR ${state.lastIssuedPnr}.`;
+          errEl.classList.remove('hidden');
+          return;
+        }
+
+        errEl.classList.add('hidden');
+        const container = document.getElementById('booking-flow-container');
+        container.classList.remove('hidden');
+        renderFlightsAndTotals();
+        goToBookingStep(source === 'checkin' ? 4 : 2);
+        showToast(source === 'checkin' ? `Check-in complete for ${pnrInput}` : `Reservation ${pnrInput} loaded`);
+      }
+
+      function getOutboundFlight() {
+        const list = ALL_FLIGHTS.filter((f) => f.orig === state.origin && f.dest === state.dest);
+        return list.find((f) => f.id === state.selectedOutFlightId) || list[0];
+      }
+
+      function getReturnFlight() {
+        const list = ALL_FLIGHTS.filter((f) => f.orig === state.dest && f.dest === state.origin);
+        return list.find((f) => f.id === state.selectedRetFlightId) || list[0];
+      }
+
+      function computeTotals() {
+        const outFlight = getOutboundFlight();
+        const retFlight = state.tripType === 'roundTrip' ? getReturnFlight() : null;
+        const legsCount = state.tripType === 'roundTrip' ? 2 : 1;
+
+        const outBase = outFlight ? outFlight.fare : 450;
+        const retBase = retFlight ? retFlight.fare : 0;
+        const basePerPax = outBase + retBase;
+
+        const tierPerLeg = state.fareTier === 'diaspora' ? 145 : state.fareTier === 'flexi' ? 240 : 0;
+        const tierTotal = tierPerLeg * legsCount * state.passengers;
+
+        let agentDiscount = 0;
+        if (state.bookingMode === 'agent') {
+          const gross = (basePerPax * state.passengers) + tierTotal;
+          agentDiscount = Math.round(gross * 0.08);
+        }
+
+        const bagsCost = state.extraBags * 95 * legsCount;
+        const mealUnit = state.meal === 'arabic' || state.meal === 'southasian' ? 45 : state.meal === 'snack' ? 25 : 0;
+        const mealCost = mealUnit * legsCount * state.passengers;
+        const priorityCost = state.fareTier === 'flexi' ? 0 : (state.priority ? 55 * legsCount * state.passengers : 0);
+        const seatCost = state.seatFee * legsCount * state.passengers;
+
+        const baseTotal = basePerPax * state.passengers;
+        const total = Math.max(0, baseTotal + tierTotal - agentDiscount + bagsCost + mealCost + priorityCost + seatCost);
+
+        return { total, baseTotal, tierTotal, agentDiscount, bagsCost, mealCost, priorityCost, seatCost };
+      }
+
+      function renderFlightsAndTotals() {
+        const origObj = AIRPORTS[state.origin];
+        const destObj = AIRPORTS[state.dest];
+        const depDate = document.getElementById('depart-date').value;
+        const retDate = document.getElementById('return-date').value;
+
+        document.getElementById('booking-route-title').textContent = `${origObj.name} (${origObj.code}) ${state.tripType === 'roundTrip' ? '⇄' : '→'} ${destObj.name} (${destObj.code})`;
+        document.getElementById('booking-route-sub').textContent = `${state.tripType === 'roundTrip' ? 'Round Trip' : 'One Way'} · ${state.passengers} ${state.passengers === 1 ? 'Passenger' : 'Passengers'} · Airbus A320 (180 Seats)`;
+
+        // Outbound List
+        document.getElementById('outbound-heading').textContent = `Outbound: ${origObj.code} → ${destObj.code}`;
+        document.getElementById('outbound-date-label').textContent = depDate;
+        const outFlights = ALL_FLIGHTS.filter((f) => f.orig === state.origin && f.dest === state.dest);
+        document.getElementById('outbound-flight-list').innerHTML = outFlights
+          .map((f) => {
+            const active = f.id === state.selectedOutFlightId;
+            return `
+              <div onclick="selectOutboundFlight('${f.id}')" class="cursor-pointer rounded-xl border ${active ? 'border-2 border-sky-600 bg-sky-50/60' : 'border-slate-200 bg-white hover:border-slate-300'} p-4 transition-all flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div class="flex items-center gap-4">
+                  <span class="font-mono text-xs font-bold text-sky-700 bg-sky-100 px-2.5 py-1 rounded-md">${f.id}</span>
+                  <div>
+                    <div class="flex items-center gap-3 font-mono text-base font-extrabold text-[#0B132B]">
+                      <span>${f.dep}</span>
+                      <span class="font-sans text-xs font-normal text-slate-500">&rarr; ${f.dur} &rarr;</span>
+                      <span>${f.arr}</span>
+                    </div>
+                    <div class="text-xs text-slate-500">${f.orig} &rarr; ${f.dest} &middot; Airbus A320 &middot; Non-stop</div>
+                  </div>
+                </div>
+                <div class="flex items-center justify-between sm:justify-end gap-4">
+                  <div class="text-right">
+                    <span class="block text-[11px] text-slate-500">Outbound / Pax</span>
+                    <strong class="font-mono text-base font-extrabold text-[#0B132B] tabular-nums">${formatMoney(f.fare)}</strong>
+                  </div>
+                  <span class="rounded-lg px-3 py-1.5 text-xs font-bold ${active ? 'bg-sky-600 text-white' : 'bg-slate-100 text-slate-700'}">${active ? 'Selected' : 'Select'}</span>
+                </div>
+              </div>
+            `;
+          })
+          .join('');
+
+        // Return List
+        const retSection = document.getElementById('return-flight-section');
+        if (state.tripType === 'roundTrip') {
+          retSection.classList.remove('hidden');
+          document.getElementById('return-heading').textContent = `Return: ${destObj.code} → ${origObj.code}`;
+          document.getElementById('return-date-label').textContent = retDate;
+          const retFlights = ALL_FLIGHTS.filter((f) => f.orig === state.dest && f.dest === state.origin);
+          document.getElementById('return-flight-list').innerHTML = retFlights
+            .map((f) => {
+              const active = f.id === state.selectedRetFlightId;
+              return `
+                <div onclick="selectReturnFlight('${f.id}')" class="cursor-pointer rounded-xl border ${active ? 'border-2 border-amber-500 bg-amber-50/60' : 'border-slate-200 bg-white hover:border-slate-300'} p-4 transition-all flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div class="flex items-center gap-4">
+                    <span class="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2.5 py-1 rounded-md">${f.id}</span>
+                    <div>
+                      <div class="flex items-center gap-3 font-mono text-base font-extrabold text-[#0B132B]">
+                        <span>${f.dep}</span>
+                        <span class="font-sans text-xs font-normal text-slate-500">&rarr; ${f.dur} &rarr;</span>
+                        <span>${f.arr}</span>
+                      </div>
+                      <div class="text-xs text-slate-500">${f.orig} &rarr; ${f.dest} &middot; Airbus A320 &middot; Non-stop</div>
+                    </div>
+                  </div>
+                  <div class="flex items-center justify-between sm:justify-end gap-4">
+                    <div class="text-right">
+                      <span class="block text-[11px] text-slate-500">Return / Pax</span>
+                      <strong class="font-mono text-base font-extrabold text-[#0B132B] tabular-nums">${formatMoney(f.fare)}</strong>
+                    </div>
+                    <span class="rounded-lg px-3 py-1.5 text-xs font-bold ${active ? 'bg-amber-400 text-slate-950' : 'bg-slate-100 text-slate-700'}">${active ? 'Selected' : 'Select'}</span>
+                  </div>
+                </div>
+              `;
+            })
+            .join('');
+        } else {
+          retSection.classList.add('hidden');
+        }
+
+        // Fare Bundle labels
+        const legsText = state.tripType === 'roundTrip' ? '/ leg' : '';
+        document.getElementById('tier-price-saver').textContent = `+${formatMoney(0)}`;
+        document.getElementById('tier-price-diaspora').textContent = `+${formatMoney(145)} ${legsText}`;
+        document.getElementById('tier-price-flexi').textContent = `+${formatMoney(240)} ${legsText}`;
+        document.getElementById('anc-bag-price').textContent = `+${formatMoney(95)} per piece ${legsText}`;
+        document.getElementById('anc-priority-price').textContent = state.fareTier === 'flexi' ? 'Included' : `+${formatMoney(55)} ${legsText}`;
+
+        const calc = computeTotals();
+        document.getElementById('step1-total').textContent = formatMoney(calc.total);
+        document.getElementById('step2-total').textContent = formatMoney(calc.total);
+        document.getElementById('step3-total').textContent = formatMoney(calc.total);
+
+        document.getElementById('checkout-breakdown').innerHTML = `
+          <div class="flex justify-between"><span>Base Flights (${state.passengers} pax)</span><span class="font-mono font-bold text-[#0B132B]">${formatMoney(calc.baseTotal)}</span></div>
+          <div class="flex justify-between"><span>Fare Bundle (${state.fareTier === 'saver' ? 'Saver Basic' : state.fareTier === 'diaspora' ? 'Diaspora / Family' : 'Flexi Plus'})</span><span class="font-mono font-bold text-[#0B132B]">${formatMoney(calc.tierTotal)}</span></div>
+          ${calc.agentDiscount > 0 ? `<div class="flex justify-between text-emerald-700 font-semibold"><span>Group Allotment Net (8%)</span><span class="font-mono">-${formatMoney(calc.agentDiscount)}</span></div>` : ''}
+          <div class="flex justify-between"><span>Extra Bags (${state.extraBags})</span><span class="font-mono font-bold text-[#0B132B]">${formatMoney(calc.bagsCost)}</span></div>
+          <div class="flex justify-between"><span>Seat (${state.seat})</span><span class="font-mono font-bold text-[#0B132B]">${formatMoney(calc.seatCost)}</span></div>
+          <div class="flex justify-between"><span>Meals &amp; Priority</span><span class="font-mono font-bold text-[#0B132B]">${formatMoney(calc.mealCost + calc.priorityCost)}</span></div>
+          <div class="flex justify-between"><span>Airport Taxes &amp; Fees</span><span class="text-emerald-700 font-semibold">Included</span></div>
+        `;
+      }
+
+      function selectOutboundFlight(id) {
+        state.selectedOutFlightId = id;
+        renderFlightsAndTotals();
+      }
+
+      function selectReturnFlight(id) {
+        state.selectedRetFlightId = id;
+        renderFlightsAndTotals();
+      }
+
+      function selectFareTier(tier) {
+        state.fareTier = tier;
+        ['saver', 'diaspora', 'flexi'].forEach((t) => {
+          const card = document.getElementById(`tier-card-${t}`);
+          const status = document.getElementById(`tier-status-${t}`);
+          if (t === tier) {
+            card.className = 'cursor-pointer rounded-2xl border-2 border-amber-400 bg-amber-50/50 p-5 transition-all flex flex-col justify-between shadow-sm';
+            status.className = 'mt-5 pt-3 border-t border-amber-200 text-xs font-extrabold text-amber-700';
+            status.textContent = 'Selected';
+          } else {
+            card.className = 'cursor-pointer rounded-2xl border border-slate-200 bg-slate-50/70 p-5 transition-all hover:border-sky-400 flex flex-col justify-between';
+            status.className = 'mt-5 pt-3 border-t border-slate-200 text-xs font-bold text-sky-700';
+            status.textContent = `Select ${t === 'saver' ? 'Saver Basic' : t === 'diaspora' ? 'Diaspora / Family' : 'Flexi Plus'}`;
+          }
+        });
+        renderFlightsAndTotals();
+      }
+
+      function updateExtraBags(delta) {
+        state.extraBags = Math.max(0, Math.min(15, state.extraBags + delta));
+        document.getElementById('extra-bags-count').textContent = String(state.extraBags);
+        renderFlightsAndTotals();
+      }
+
+      function updateMeal(val) {
+        state.meal = val;
+        renderFlightsAndTotals();
+      }
+
+      function togglePriority(checked) {
+        state.priority = checked;
+        renderFlightsAndTotals();
+      }
+
+      function selectPaymentMethod(method) {
+        state.paymentMethod = method;
+        ['mada', 'apple', 'card'].forEach((m) => {
+          const btn = document.getElementById(`pay-${m}`);
+          if (m === method) {
+            btn.className = 'rounded-xl border-2 border-[#0B132B] bg-white p-3 text-center text-xs font-extrabold text-[#0B132B] transition-colors';
+          } else {
+            btn.className = 'rounded-xl border border-slate-300 bg-white p-3 text-center text-xs font-semibold text-slate-600 hover:border-slate-400 transition-colors';
+          }
+        });
+      }
+
+      function renderSeatMap() {
+        const rows = [
+          { num: 1, type: 'Front Row', fee: 60 },
+          { num: 2, type: 'Front Row', fee: 60 },
+          { num: 12, type: 'Extra Legroom', fee: 75 },
+          { num: 14, type: 'Standard', fee: 0 },
+        ];
+        document.getElementById('cabin-seat-grid').innerHTML = rows
+          .map((r) => {
+            const mk = (cols) =>
+              cols
+                .map((c) => {
+                  const code = `${r.num}${c}`;
+                  const active = state.seat === code;
+                  const occ = code === '1B' || code === '12D' || code === '14C';
+                  return `<button type="button" ${occ ? 'disabled' : ''} onclick="pickSeat('${code}','${r.type}',${r.fee})" class="h-7 w-7 rounded font-mono text-[10px] font-bold ${occ ? 'bg-slate-200 text-slate-400 cursor-not-allowed' : active ? 'bg-amber-400 text-slate-950 shadow-sm' : r.num <= 2 ? 'bg-amber-100 text-amber-800 hover:bg-amber-300' : r.num === 12 ? 'bg-sky-100 text-sky-800 hover:bg-sky-300' : 'bg-slate-100 text-[#0B132B] border border-slate-300 hover:border-sky-500'}">${c}</button>`;
+                })
+                .join('');
+            return `<div class="flex items-center justify-between"><div class="flex gap-1">${mk(['A', 'B', 'C'])}</div><span class="font-mono text-[10px] font-semibold text-slate-500">Row ${r.num}</span><div class="flex gap-1">${mk(['D', 'E', 'F'])}</div></div>`;
+          })
+          .join('');
+      }
+
+      function pickSeat(code, type, fee) {
+        state.seat = code;
+        state.seatType = type;
+        state.seatFee = fee;
+        document.getElementById('selected-seat-display').textContent = code;
+        document.getElementById('selected-seat-type').textContent = type;
+        document.getElementById('seat-fee-display').textContent = `+${formatMoney(fee)}`;
+        renderSeatMap();
+        renderFlightsAndTotals();
+      }
+
+      function goToBookingStep(step) {
+        [1, 2, 3, 4].forEach((n) => {
+          const p = document.getElementById(`booking-step-${n}`);
+          const t = document.getElementById(`step-tab-${n}`);
+          if (n === step) {
+            p.classList.remove('hidden');
+            t.className = 'rounded-lg bg-[#0B132B] px-3 py-1.5 font-bold text-white whitespace-nowrap shrink-0';
+          } else {
+            p.classList.add('hidden');
+            t.className = 'rounded-lg bg-slate-100 px-3 py-1.5 font-medium text-slate-600 whitespace-nowrap shrink-0';
+          }
+        });
+        if (step === 2) renderSeatMap();
+        if (step === 4) populateBoardingPass();
+        if (window.lucide) lucide.createIcons();
+      }
+
+      function completeBooking(e) {
+        e.preventDefault();
+        const fullName = document.getElementById('pax-name').value.trim() || 'Tariq Al-Rashid';
+        const parts = fullName.split(/\s+/);
+        state.lastIssuedSurname = (parts[parts.length - 1] || 'AL-RASHID').toUpperCase();
+        state.lastIssuedPnr = state.bookingMode === 'agent' ? 'AV-GRP-490B' : 'AV-2026-84R';
+        goToBookingStep(4);
+        showToast(`Booking confirmed — PNR ${state.lastIssuedPnr}`);
+      }
+
+      function populateBoardingPass() {
+        const origObj = AIRPORTS[state.origin];
+        const destObj = AIRPORTS[state.dest];
+        const outFlight = getOutboundFlight();
+        const retFlight = getReturnFlight();
+        const calc = computeTotals();
+        const name = document.getElementById('pax-name').value.trim() || 'Tariq Al-Rashid';
+        const lang = document.getElementById('pax-lang').value;
+        const depDate = document.getElementById('depart-date').value;
+        const retDate = document.getElementById('return-date').value;
+
+        document.getElementById('bp-pnr').textContent = state.lastIssuedPnr;
+        document.getElementById('bp-name').textContent = state.bookingMode === 'agent' ? `${name} (Group · ${state.passengers} Guests)` : name;
+        document.getElementById('bp-tier').textContent = state.fareTier === 'saver' ? 'Saver Basic' : state.fareTier === 'diaspora' ? 'Diaspora / Family' : 'Flexi Plus';
+        document.getElementById('bp-seat').textContent = state.bookingMode === 'agent' ? `Group Block (${state.passengers})` : state.seat;
+        document.getElementById('bp-pay').textContent = state.paymentMethod === 'mada' ? 'mada / Sadad' : state.paymentMethod === 'apple' ? 'Apple Pay' : 'Visa / Mastercard';
+
+        document.getElementById('bp-out-flight').textContent = outFlight.id;
+        document.getElementById('bp-out-date').textContent = depDate;
+        document.getElementById('bp-orig-code').textContent = origObj.code;
+        document.getElementById('bp-orig-name').textContent = origObj.name;
+        document.getElementById('bp-dep').textContent = outFlight.dep;
+        document.getElementById('bp-dur').textContent = outFlight.dur;
+        document.getElementById('bp-out-gate').textContent = outFlight.gate;
+        document.getElementById('bp-dest-code').textContent = destObj.code;
+        document.getElementById('bp-dest-name').textContent = destObj.name;
+        document.getElementById('bp-arr').textContent = outFlight.arr;
+
+        const retWrap = document.getElementById('bp-return-leg');
+        if (state.tripType === 'roundTrip' && retFlight) {
+          retWrap.classList.remove('hidden');
+          document.getElementById('bp-ret-flight').textContent = retFlight.id;
+          document.getElementById('bp-ret-date').textContent = retDate;
+          document.getElementById('bp-ret-orig-code').textContent = destObj.code;
+          document.getElementById('bp-ret-orig-name').textContent = destObj.name;
+          document.getElementById('bp-ret-dep').textContent = retFlight.dep;
+          document.getElementById('bp-ret-dur').textContent = retFlight.dur;
+          document.getElementById('bp-ret-gate').textContent = retFlight.gate;
+          document.getElementById('bp-ret-dest-code').textContent = origObj.code;
+          document.getElementById('bp-ret-dest-name').textContent = origObj.name;
+          document.getElementById('bp-ret-arr').textContent = retFlight.arr;
+        } else {
+          retWrap.classList.add('hidden');
+        }
+
+        document.getElementById('bp-baggage-summary').textContent = `Baggage: ${state.fareTier === 'saver' ? '7kg Cabin Only' : '7kg Cabin + 30kg Checked'}${state.extraBags > 0 ? ` + ${state.extraBags}x 15kg Extra` : ''}`;
+        document.getElementById('bp-addons-summary').textContent = `Support: ${lang} · Airbus A320 (180Y)`;
+        document.getElementById('bp-total').textContent = formatMoney(calc.total);
+      }
+
+      function renderFlightStatusList(query) {
+        const q = (query || '').trim().toLowerCase();
+        const matches = ALL_FLIGHTS.filter((f) => {
+          const origName = AIRPORTS[f.orig].name.toLowerCase();
+          const destName = AIRPORTS[f.dest].name.toLowerCase();
+          return (
+            !q ||
+            f.id.toLowerCase().includes(q) ||
+            f.orig.toLowerCase().includes(q) ||
+            f.dest.toLowerCase().includes(q) ||
+            origName.includes(q) ||
+            destName.includes(q)
+          );
+        });
+
+        const grid = document.getElementById('flight-status-grid');
+        if (matches.length === 0) {
+          grid.innerHTML = `<div class="col-span-full rounded-xl border border-slate-200 bg-slate-50 p-6 text-center text-xs text-slate-500">No Year 1 flights match "${query}". Active stations: RUH, JED, DMM, DAC, and COK.</div>`;
+          return;
+        }
+
+        grid.innerHTML = matches
+          .slice(0, 8)
+          .map(
+            (r) => `
+            <div class="rounded-xl border border-slate-200 bg-slate-50 p-4 flex items-center justify-between">
+              <div>
+                <div class="font-mono text-xs font-bold text-[#0B132B]">${r.id} &middot; ${r.orig} &rarr; ${r.dest} (${AIRPORTS[r.dest].name})</div>
+                <div class="mt-1 text-xs text-slate-600">Departs ${r.dep} &middot; Arrives ${r.arr} &middot; Gate ${r.gate}</div>
+              </div>
+              <span class="text-xs font-extrabold ${r.status === 'Boarding' ? 'text-amber-600' : r.status === 'On Time' ? 'text-emerald-700' : 'text-slate-600'}">${r.status}</span>
+            </div>
+          `
+          )
+          .join('');
+      }
+
+      function switchDestPhase(phase) {
+        state.destPhase = phase;
+        const y1Btn = document.getElementById('dest-tab-year1');
+        const upBtn = document.getElementById('dest-tab-upcoming');
+        if (phase === 'year1') {
+          y1Btn.className = 'rounded-lg bg-[#0B132B] px-4 py-2 text-xs font-bold text-white whitespace-nowrap';
+          upBtn.className = 'rounded-lg px-4 py-2 text-xs font-semibold text-slate-600 hover:text-[#0B132B] whitespace-nowrap';
+        } else {
+          upBtn.className = 'rounded-lg bg-amber-400 px-4 py-2 text-xs font-extrabold text-slate-950 whitespace-nowrap';
+          y1Btn.className = 'rounded-lg px-4 py-2 text-xs font-semibold text-slate-600 hover:text-[#0B132B] whitespace-nowrap';
+        }
+        renderDestinationCards();
+      }
+
+      function notifyRoute(routeLabel) {
+        showToast(`${routeLabel} joins in Phase 2–3 as new A320 aircraft arrive`);
+        document.getElementById('newsletter-email').focus();
+      }
+
+      function renderDestinationCards() {
+        const grid = document.getElementById('destination-cards-grid');
+        if (state.destPhase === 'year1') {
+          grid.innerHTML = YEAR1_DESTINATIONS.map((d) => `
+            <div class="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm hover:shadow-md hover:border-sky-400 transition-all flex flex-col justify-between">
+              <div>
+                <div class="relative bg-[#0B132B]">
+                  ${DESTINATION_ART[d.code] || ''}
+                  <span class="absolute top-3 right-3 rounded-md bg-[#0B132B]/80 px-2 py-0.5 font-mono text-[11px] font-bold text-sky-400">${d.code}</span>
+                </div>
+                <div class="p-5 pb-3">
+                  <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">${d.country}</span>
+                  <h3 class="font-display text-xl font-extrabold text-[#0B132B] mt-0.5">${d.name}</h3>
+                  <p class="text-xs text-slate-600 mt-1">${d.tag} &middot; ${d.duration}</p>
+                </div>
+              </div>
+              <div class="mx-5 mb-5 pt-3 border-t border-slate-100 flex items-center justify-between">
+                <div>
+                  <span class="block text-[11px] text-slate-500">${d.freq}</span>
+                  <strong class="font-mono text-base font-extrabold text-[#0B132B] tabular-nums">From ${formatMoney(d.baseFare)}</strong>
+                </div>
+                <button type="button" onclick="quickBook('RUH', '${d.code}')" class="rounded-lg bg-amber-400 px-4 py-2 text-xs font-extrabold text-slate-950 hover:bg-amber-300 transition-colors">
+                  Book
+                </button>
+              </div>
+            </div>
+          `).join('');
+        } else {
+          grid.innerHTML = UPCOMING_DESTINATIONS.map((d) => `
+            <div class="rounded-2xl border border-slate-200 bg-white p-5 flex flex-col justify-between shadow-sm">
+              <div>
+                <div class="flex items-center justify-between text-xs text-slate-500">
+                  <span>${d.country}</span>
+                  <span class="font-mono font-bold text-slate-400">${d.code}</span>
+                </div>
+                <h3 class="font-display text-xl font-extrabold text-[#0B132B] mt-1">${d.name}</h3>
+                <p class="text-xs text-slate-600 mt-1">${d.tag} &middot; ${d.duration}</p>
+              </div>
+              <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
+                <div>
+                  <span class="block text-[11px] text-amber-700 font-bold">${d.phase}</span>
+                  <span class="text-xs text-slate-500">Subject to fleet induction</span>
+                </div>
+                <button type="button" onclick="notifyRoute('${d.name} (${d.code})')" class="rounded-lg border border-slate-300 px-3.5 py-2 text-xs font-bold text-slate-700 hover:border-amber-500 hover:text-amber-700 transition-colors">
+                  Notify Me
+                </button>
+              </div>
+            </div>
+          `).join('');
+        }
+      }
+
+      function selectStopoverDuration(nights) {
+        state.stopoverNights = nights;
+        [1, 2, 3].forEach((n) => {
+          const btn = document.getElementById(`stopover-btn-${n}`);
+          btn.className = n === nights
+            ? 'rounded-lg bg-amber-400 px-4 py-2 font-bold text-slate-950'
+            : 'rounded-lg bg-[#0B132B] border border-white/15 px-4 py-2 font-semibold text-slate-200 hover:border-sky-400';
+        });
+        updateStopoverUI();
+      }
+
+      function updateStopoverUI() {
+        const plan = STOPOVER_PLANS[state.stopoverNights];
+        document.getElementById('stopover-card-title').textContent = plan.title;
+        document.getElementById('stopover-card-visa').textContent = plan.visa;
+        document.getElementById('stopover-card-desc').textContent = plan.desc;
+        document.getElementById('stopover-card-price').textContent = `From ${formatMoney(plan.sar)} / guest`;
+      }
+
+      function switchTravelTab(tab) {
+        ['baggage', 'onboard', 'groups'].forEach((t) => {
+          const btn = document.getElementById(`info-tab-${t}`);
+          btn.className = t === tab
+            ? 'rounded-lg bg-[#0B132B] px-3.5 py-2 text-xs font-bold text-white whitespace-nowrap'
+            : 'rounded-lg px-3.5 py-2 text-xs font-semibold text-slate-600 hover:text-[#0B132B] whitespace-nowrap';
+        });
+
+        const box = document.getElementById('travel-info-content');
+        if (tab === 'baggage') {
+          box.innerHTML = `
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-3 text-xs">
+              <div class="rounded-2xl border border-slate-200 bg-white p-6 space-y-2 shadow-sm">
+                <strong class="text-sm font-extrabold text-[#0B132B] block">Saver Basic Carry-On</strong>
+                <p class="text-slate-600 leading-relaxed">Every ticket includes 1 cabin bag up to <strong class="font-mono text-sky-700">7 kg</strong> (56 &times; 36 &times; 23 cm) plus 1 small under-seat personal item.</p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-white p-6 space-y-2 shadow-sm">
+                <strong class="text-sm font-extrabold text-[#0B132B] block">30kg Diaspora / Family Allowance</strong>
+                <p class="text-slate-600 leading-relaxed">Select our Diaspora / Family Bundle or Flexi Plus for a guaranteed <strong class="font-mono text-amber-700">30 kg</strong> checked bag with no airport counter surprises.</p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-white p-6 space-y-2 shadow-sm">
+                <strong class="text-sm font-extrabold text-[#0B132B] block">Zamzam Water &amp; Umrah Bags</strong>
+                <p class="text-slate-600 leading-relaxed">Licensed 5-litre sealed Zamzam water containers are accepted on Jeddah &amp; Riyadh international flights per GACA rules.</p>
+              </div>
+            </div>
+          `;
+        } else if (tab === 'onboard') {
+          box.innerHTML = `
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-3 text-xs">
+              <div class="rounded-2xl border border-slate-200 bg-white p-6 space-y-2 shadow-sm">
+                <strong class="text-sm font-extrabold text-[#0B132B] block">Year 1 Fleet: 3 Airbus A320s (180 Seats)</strong>
+                <p class="text-slate-600 leading-relaxed">Uniform single-class 180-seat Airbus A320 fleet starting with 3 dry-leased aircraft in Year 1 for dependable domestic and regional flying.</p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-white p-6 space-y-2 shadow-sm">
+                <strong class="text-sm font-extrabold text-[#0B132B] block">Pre-Order Regional Meals</strong>
+                <p class="text-slate-600 leading-relaxed">Book Saudi Kabsa, South Asian Biryani, vegetarian thalis, or light snacks before your flight, or purchase refreshments onboard.</p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-white p-6 space-y-2 shadow-sm">
+                <strong class="text-sm font-extrabold text-[#0B132B] block">Disciplined Riyadh Launch</strong>
+                <p class="text-slate-600 leading-relaxed">Year 1 focuses on Riyadh (RUH) to Jeddah, Dammam, Dhaka, and Kochi, expanding to Madinah, Colombo, Mumbai, and Cairo as fleet capacity grows.</p>
+              </div>
+            </div>
+          `;
+        } else {
+          box.innerHTML = `
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-3 text-xs">
+              <div class="rounded-2xl border border-slate-200 bg-white p-6 space-y-2 shadow-sm">
+                <strong class="text-sm font-extrabold text-[#0B132B] block">Family Group Seating</strong>
+                <p class="text-slate-600 leading-relaxed">Families booking our Diaspora / Family Bundle receive adjacent row seating so parents and children always sit together.</p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-white p-6 space-y-2 shadow-sm">
+                <strong class="text-sm font-extrabold text-[#0B132B] block">Licensed Umrah &amp; Agent Allotments</strong>
+                <p class="text-slate-600 leading-relaxed">Travel organizers can block 10 to 45 seats directly via Travel Agent / Umrah Group mode with flexible passenger name submission.</p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-white p-6 space-y-2 shadow-sm">
+                <strong class="text-sm font-extrabold text-[#0B132B] block">Multilingual Guest Care</strong>
+                <p class="text-slate-600 leading-relaxed">Direct web, WhatsApp-assisted, and contact support in Arabic, English, Bengali, Malayalam, Sinhala, Hindi, and Urdu.</p>
+              </div>
+            </div>
+          `;
+        }
+      }
+
+      function loadSampleAwb(code) {
+        document.getElementById('awb-input').value = code;
+        renderAwb(code);
+      }
+
+      function searchAwb(e) {
+        e.preventDefault();
+        renderAwb(document.getElementById('awb-input').value.trim().toUpperCase());
+      }
+
+      function renderAwb(code) {
+        const err = document.getElementById('awb-error');
+        const res = document.getElementById('awb-result');
+        const rec = AWB_DATABASE[code];
+        if (!rec) {
+          err.textContent = `AWB "${code}" not found. Try AV-AWB-401829, AV-AWB-772910, or AV-AWB-118452.`;
+          err.classList.remove('hidden');
+          return;
+        }
+        err.classList.add('hidden');
+        res.innerHTML = `
+          <div class="grid grid-cols-2 gap-4 border-b border-white/10 pb-4 text-xs sm:grid-cols-4">
+            <div><span class="block text-slate-400">Status</span><strong class="text-emerald-400">${rec.status}</strong></div>
+            <div><span class="block text-slate-400">Route</span><strong class="text-white font-mono">${rec.route}</strong></div>
+            <div><span class="block text-slate-400">Weight</span><strong class="text-sky-400 font-mono">${rec.weight}</strong></div>
+            <div><span class="block text-slate-400">ETA</span><strong class="text-amber-400 font-mono">${rec.eta}</strong></div>
+          </div>
+          <div class="text-xs text-slate-300">Commodity: <strong class="text-white">${rec.commodity}</strong></div>
+          <div class="space-y-3 pt-1">
+            ${rec.steps
+              .map(
+                (s) => `
+              <div class="flex items-center justify-between text-xs">
+                <div class="flex items-center gap-2.5">
+                  <span class="h-2.5 w-2.5 rounded-full ${s.done ? 'bg-sky-400' : 'bg-slate-600'}"></span>
+                  <span class="${s.done ? 'text-white font-medium' : 'text-slate-400'}">${s.label}</span>
+                </div>
+                <span class="font-mono text-[11px] text-slate-400">${s.time}</span>
+              </div>
+            `
+              )
+              .join('')}
+          </div>
+        `;
+      }
+
+      function calculateCargoQuote(e) {
+        if (e) e.preventDefault();
+        const origin = document.getElementById('cargo-origin').value;
+        const destSel = document.getElementById('cargo-dest');
+        if (destSel.value === origin) {
+          destSel.value = origin === 'RUH' ? 'DAC' : 'RUH';
+        }
+        const dest = destSel.value;
+        const weight = Math.max(25, Math.min(3500, Number(document.getElementById('cargo-weight').value) || 450));
+        const comm = document.getElementById('cargo-commodity').value;
+        const basePerKg = ['RUH', 'JED', 'DMM'].includes(dest) ? 4.2 : 8.1;
+        const mult = comm === 'perishable' ? 1.25 : comm === 'express' ? 1.35 : 1.0;
+        const sarQuote = Math.round(weight * basePerKg * mult + 350);
+        document.getElementById('cargo-quote-value').textContent = formatMoney(sarQuote);
+        document.getElementById('cargo-quote-note').textContent = `${origin} → ${dest} · ${weight.toLocaleString()} kg`;
+      }
+
+      const GREETINGS = {
+        Arabic: 'أهلاً بكم في أڤالون — خدمة العملاء متوفرة على مدار الساعة من الرياض.',
+        English: 'Welcome to Avalon — 24/7 WhatsApp-assisted booking & baggage support.',
+        Bengali: 'অ্যাভালন এয়ারলাইন্সে স্বাগতম — রিয়াদ ও ঢাকা রুটে বাংলা সহায়তা।',
+        Malayalam: 'അവലോൺ എയർലൈൻസിലേക്ക് സ്വാഗതം — റിയാദ്-കൊച്ചി യാത്രയ്ക്ക് മലയാളം പിന്തുണ.',
+        Sinhala: 'Avalon ගුවන් සේවය වෙත සාදරයෙන් පිළිගනිමු — රියාද්-කොළඹ සිංහල සහාය.',
+        Hindi: 'एवलॉन एयरलाइंस में आपका स्वागत है — हिंदी व उर्दू सहायता उपलब्ध।',
+      };
+
+      function previewLanguage(lang) {
+        document.getElementById('lang-greeting').textContent = GREETINGS[lang] || GREETINGS.English;
+      }
+
+      function submitNewsletter(e) {
+        e.preventDefault();
+        const input = document.getElementById('newsletter-email');
+        const feedback = document.getElementById('newsletter-feedback');
+        if (input.value && input.value.includes('@')) {
+          feedback.textContent = `Subscribed ${input.value} to Avalon fare alerts.`;
+          feedback.classList.remove('hidden');
+          input.value = '';
+          showToast('Subscribed to Avalon fare alerts');
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        populateAirportSelects();
+        populatePassengerSelect();
+        renderDestinationCards();
+        renderFlightsAndTotals();
+        selectStopoverDuration(1);
+        switchTravelTab('baggage');
+        renderAwb('AV-AWB-401829');
+        calculateCargoQuote();
+        if (window.lucide) lucide.createIcons();
+      });
+    </script>
   </body>
 </html>
-
