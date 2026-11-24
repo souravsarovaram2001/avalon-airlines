@@ -584,7 +584,7 @@ export default function App() {
               <span>Riyadh's Premier Hybrid Carrier • Saudi Vision 2030 Aligned</span>
             </div>
             <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight">
-              Avalon — <span className="bg-gradient-to-r from-sky-400 via-sky-200 to-amber-300 bg-clip-text text-transparent">Beyond Every Horizon</span>
+              Avalon — <span className="bg-gradient-to-r from-sky-400 via-sky-200 to-amber-300 bg-clip-text text-transparent">Affordable journeys. Dependable connections.</span>
             </h1>
             <p className="mt-4 text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
               Experience ultra-efficient, digitally integrated international air travel radiating from King Khalid International Airport (RUH). High-value passenger comfort combined with agile belly-cargo logistics.
